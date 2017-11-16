@@ -1,0 +1,100 @@
+html {
+  /* 10px size if default is 16 px to conver to 10px we do 10/16*/
+  font-size: 62.5%; }
+
+body {
+  background-color: #e0e0e0; }
+
+.navbar {
+  background-color: #b83400;
+  margin-bottom: 0;
+  border-radius: 0;
+  width: 100%; }
+  .navbar-default {
+    border: none;
+    border-color: inherit; }
+  .navbar-container {
+    min-height: 8rem; }
+  .navbar-header .navbar-brand {
+    padding: 2rem;
+    font-size: 1.8rem;
+    line-height: 2rem; }
+  .navbar-default .navbar-nav--up {
+    display: block; }
+  .navbar-default .navbar-nav--down {
+    display: block; }
+  .navbar-default .navbar-nav > li > a {
+    color: #fff;
+    padding: 2rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase; }
+
+.slideShow {
+  margin-bottom: 3rem; }
+  .slideShow .carousel-inner {
+    height: 80vh; }
+  .slideShow-photo--bg {
+    height: 80vh;
+    background-size: cover;
+    background-position: center; }
+
+.u-center-text {
+  text-align: center; }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem; }
+
+.u-margin-top-small {
+  margin-top: 2rem; }
+
+.u-margin-top-big {
+  margin-top: 8rem; }
+
+.u-margin-top-huge {
+  margin-top: 10rem; }
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem; }
+
+.u-margin-rigth-small {
+  margin-right: 4rem; }
+
+.u-margin-left-md {
+  margin-left: 7rem; }
+
+.car-details {
+  padding: 4rem; }
+  .car-details .heading-car-title {
+    margin-bottom: 0;
+    padding-bottom: 0; }
+  .car-details .heading-car-subtitle {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0; }
+  .car-details ul {
+    padding: 0; }
+  .car-details li {
+    list-style: none; }
+  .car-details .horizontal-line {
+    margin-top: 2rem;
+    margin-left: 1rem;
+    background-color: black;
+    width: 75%;
+    height: 1px; }
+  .car-details .vertical-line::before {
+    content: '';
+    width: 0;
+    height: 90%;
+    position: absolute;
+    border: .5px solid black;
+    top: 0;
+    right: 0; }
+  .car-details--left {
+    min-height: 16rem; }
+    .car-details--left li {
+      padding: .5rem 0; }

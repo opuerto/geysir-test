@@ -1,0 +1,14 @@
+.slideShow {
+  margin-bottom: 3rem;
+  .carousel-inner{
+    height: 80vh;
+  }
+
+
+  &-photo--bg {
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+  }
+  
+}
