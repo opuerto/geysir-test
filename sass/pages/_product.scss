@@ -1,7 +1,7 @@
 
 .car__info {
   &-container {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
 
   }
@@ -86,7 +86,7 @@
     color:$color-dark-gray;
   }
   &-container {
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
     &:after {
     content: "";
@@ -103,4 +103,30 @@
     width: 20%;
     float: left;
   }
+}
+
+.product__header {
+  margin-top: 3rem;
+  &-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .product-heading {
+    text-transform: uppercase;
+    font-size: 3rem;
+    font-weight: 700;
+    color:$color-dark-gray;
+    margin: 0;
+    padding: 0;
+  }
+
+  .product-heading-legent {
+    text-transform: uppercase;
+    text-align: right;
+    font-weight: bold;
+    font-size:1.2rem;
+
+  }
+
 }

@@ -66,8 +66,23 @@ body {
 .u-margin-left-md {
   margin-left: 7rem; }
 
+.u-span-block {
+  display: block; }
+
+.u-clear-margin-left {
+  margin-left: 0; }
+
+.u-clear-margin-right {
+  margin-right: 0; }
+
+.u-clear-padding-left {
+  padding-left: 0; }
+
+.u-clear-padding-right {
+  padding-right: 0; }
+
 .car__info-container {
-  width: 70%;
+  width: 80%;
   margin: 0 auto; }
 
 .car__info-inner {
@@ -127,7 +142,7 @@ body {
   color: #4d4d4d; }
 
 .car__title-container {
-  width: 70%;
+  width: 80%;
   margin: 0 auto; }
   .car__title-container:after {
     content: "";
@@ -141,3 +156,21 @@ body {
 .car__title--right {
   width: 20%;
   float: left; }
+
+.product__header {
+  margin-top: 3rem; }
+  .product__header-container {
+    width: 80%;
+    margin: 0 auto; }
+  .product__header .product-heading {
+    text-transform: uppercase;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #4d4d4d;
+    margin: 0;
+    padding: 0; }
+  .product__header .product-heading-legent {
+    text-transform: uppercase;
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.2rem; }
