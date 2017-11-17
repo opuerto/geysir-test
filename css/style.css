@@ -39,6 +39,28 @@ body {
     background-size: cover;
     background-position: center; }
 
+.rental__periodform-box {
+  text-transform: uppercase;
+  width: 100%;
+  background-color: #4d4d4d;
+  padding: .5rem 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #e0e0e0; }
+  .rental__periodform-box:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.rental__periodform .span-title {
+  float: left;
+  display: inline-block; }
+
+.rental__periodform .span-price {
+  float: right;
+  display: inline-block; }
+
 .u-center-text {
   text-align: center; }
 
@@ -80,6 +102,10 @@ body {
 
 .u-clear-padding-right {
   padding-right: 0; }
+
+.u-smaller-container {
+  width: 80%;
+  margin: 0 auto; }
 
 .car__info-container {
   width: 80%;
