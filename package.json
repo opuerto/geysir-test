@@ -2,14 +2,20 @@
   "name": "geysir-test",
   "version": "1.0.0",
   "description": "booking page for geysir",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "compile:sass": "node-sass sass/main.scss css/style.css"
+    "compile:sass": "node-sass sass/main.scss css/style.css",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "8.2.1"
   },
   "author": "oscar",
   "license": "ISC",
   "devDependencies": {
-    "node-sass": "^4.6.1"
+    "node-sass": "^4.6.1",
+    "ejs": "~1.0.0",
+    "express": "~4.9.8"
   }
 
 }
