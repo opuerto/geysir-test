@@ -2,14 +2,12 @@
   "name": "geysir-test",
   "version": "1.0.0",
   "description": "booking page for geysir",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "compile:sass": "node-sass sass/main.scss css/style.css",
-    "start": "node server.js"
   },
   "dependencies": {
-    "ejs": "~1.0.0",
-    "express": "~4.9.8"
+    "node-static": "^0.7.10"
   },
   "engines": {
     "node": "8.2.1"
