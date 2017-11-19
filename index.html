@@ -5,11 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/vendor/daterangepicker.css">
   <link rel="stylesheet" href="/css/style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
   <title>geysir</title>
 </head>
@@ -156,19 +153,55 @@
     <div class="container">
       <div class="row">
         <div class="rental__periodform-selectors u-smaller-container">
-          <div class="col-md-6 u-clear-padding-left">
+          <div class="col-md-6 u-clear-padding-left
+            u-decrease-padding-right-s">
             <div class="rental__periodform-time">
               <div class="rental__periodform-box">
                 <span class="span-title">Rental</span>
-                <span class="span-price">€ 12.232,98</span>
+                <span class="span-price">€ 0</span>
+              </div>
+            </div>
+            <div class="rental__periodform-inputboxes">
+              <div class="ib-row">
+                <div class="ib-timepickers">
+                  <div class="input-group">
+                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="daterange" value="01/01/2015 - 01/31/2015">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                  </div>
+                  <!--div class="inputsTest">start Date</div-->
+                </div>
+                <div class="ib-timepickers">
+                  <div class="inputsTest">End Date</div>
+                </div>
+              </div>
+              <div class="ib-row">
+                <div class="ib-timepickers">
+                  <div class="inputsTest">Start Time</div>
+                </div>
+                <div class="ib-timepickers">
+                  <div class="inputsTest">End time</div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-md-6 u-clear-padding-right">
+          <div class="col-md-6 u-clear-padding-right
+            u-decrease-padding-left-s">
             <div class="rental__periodform-location">
               <div class="rental__periodform-box">
                 <span class="span-title">Location</span>
-                <span class="span-price">€ 12.232,98</span>
+                <span class="span-price">€ 0</span>
+              </div>
+            </div>
+            <div class="rental__periodform-inputboxes">
+              <div class="ib-row">
+                <div class="ib-location-select">
+                  <div class="inputsTest">Start Location</div>
+                </div>
+              </div>
+              <div class="ib-row">
+                <div class="ib-location-select">
+                  <div class="inputsTest">End Location</div>
+                </div>
               </div>
             </div>
           </div>
@@ -177,54 +210,14 @@
     </div>
 
   </section>
-  <!--section class="car-details">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-7">
-            <h2 class="heading-car-title">CAR NAME</h2>
-            <h3 class="heading-car-subtitle">subtitle</h3>
-          </div>
-          <div class="col-md-5">
-            <h1 class="price u-margin-left-md">€ 999</h1>
-          </div>
-        </div>
-        <div class="row u-margin-top-small">
-          <div class="col-md-8">
-              <div class="car-details--left">
-                  <ul>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-  tincidunt ut laoreet dolore magna aliquam erat volutpat.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-  tincidunt ut laoreet dolore magna aliquam erat volutpat.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-  tincidunt ut laoreet dolore magna aliquam erat volutpat.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-  tincidunt ut laoreet dolore magna aliquam erat volutpat.</li>
-                  </ul>
-                  <i class="vertical-line"></i>
-              </div>
-          </div>
-            <div class="col-md-4">
-              <div class="car-details--right">
-                <ul>
-                  <li>property 1</li>
-                  <li>property 2</li>
-                  <li>property 3</li>
-                  <li>property 4</li>
-                  <li>property 5</li>
-                  <li>property 6</li>
-                  <li>property 7</li>
-                </ul>
-                <a href="" class="car-details-more">show more...</a>
-              </div>
-          </div>
-          <div class="col-md-12 horizontal-line"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        </div>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="/js/vendor/moment.min.js"></script>
+  <script src="/js/vendor/daterangepicker.js"></script>
+  <script src="/js/geysir.js"></script>
 
-      </div>
-
-</section-->
 </body>
 
 </html>

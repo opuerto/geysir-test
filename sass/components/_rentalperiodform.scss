@@ -1,23 +1,16 @@
 .rental__periodform {
-  &-selectors {
+  &-selectors {}
 
-  }
+  &-time {}
 
-  &-time {
-
-
-  }
-
-  &-location {
-
-  }
+  &-location {}
 
   &-box {
     @include clearfix;
     text-transform: uppercase;
     width: 100%;
     background-color: $color-dark-gray;
-    padding: .5rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     margin-bottom: 1rem;
     font-size: 2.5rem;
     font-weight: 700;
@@ -32,5 +25,36 @@
   .span-price {
     float: right;
     display: inline-block;
+  }
+
+  &-inputboxes {
+    @include clearfix;
+    width: 100%;
+
+    .ib-row {
+      @include clearfix;
+      width: 100%;
+      &:not(:last-child) {
+        margin-bottom: .4rem;
+      }
+
+      [class="ib-timepickers"] {
+        float: left;
+
+        &:not(:last-child) {
+          margin-right: 0.4rem;
+        }
+      }
+    }
+
+    .ib-timepickers {
+      width: 50%;
+
+      width: calc((100% - .4rem)/2);
+
+    }
+  }
+  .inputsTest {
+    background-color: $color-primary-input;
   }
 }

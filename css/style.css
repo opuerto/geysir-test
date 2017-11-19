@@ -43,7 +43,7 @@ body {
   text-transform: uppercase;
   width: 100%;
   background-color: #4d4d4d;
-  padding: .5rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   margin-bottom: 1rem;
   font-size: 2.5rem;
   font-weight: 700;
@@ -60,6 +60,31 @@ body {
 .rental__periodform .span-price {
   float: right;
   display: inline-block; }
+
+.rental__periodform-inputboxes {
+  width: 100%; }
+  .rental__periodform-inputboxes:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .rental__periodform-inputboxes .ib-row {
+    width: 100%; }
+    .rental__periodform-inputboxes .ib-row:after {
+      content: "";
+      display: table;
+      clear: both; }
+    .rental__periodform-inputboxes .ib-row:not(:last-child) {
+      margin-bottom: .4rem; }
+    .rental__periodform-inputboxes .ib-row [class="ib-timepickers"] {
+      float: left; }
+      .rental__periodform-inputboxes .ib-row [class="ib-timepickers"]:not(:last-child) {
+        margin-right: 0.4rem; }
+  .rental__periodform-inputboxes .ib-timepickers {
+    width: 50%;
+    width: calc((100% - .4rem)/2); }
+
+.rental__periodform .inputsTest {
+  background-color: #cecece; }
 
 .u-center-text {
   text-align: center; }
@@ -102,6 +127,12 @@ body {
 
 .u-clear-padding-right {
   padding-right: 0; }
+
+.u-decrease-padding-left-s {
+  padding-left: 1rem; }
+
+.u-decrease-padding-right-s {
+  padding-right: 1rem; }
 
 .u-smaller-container {
   width: 80%;
