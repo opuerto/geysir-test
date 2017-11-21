@@ -15,8 +15,11 @@ Product.controller('mainCtrl', function($scope, $location, slidesSvc) {
 Product.controller('slideCtrl', function($scope, slidesSvc) {
   //call the services to fetch the sliders by product
   slidesSvc.getSlides().then(function(response) {
+    //get the response from the promise
     this.results = response.data.result;
+    //we need to append some divs into the html of the carousel
     for (var i = 0; i < results.length; i++) {
+      //only the first div is setted active  
       if(i < 1) {
         $('<div/>', {
             "class": 'item active slideShow-photo--bg',
