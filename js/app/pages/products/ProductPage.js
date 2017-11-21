@@ -1,7 +1,7 @@
 var Product = angular.module('Product', ['ngResource']);
 
 Product.controller('mainCtrl', function($scope, $location, slidesSvc) {
-
+ //p
   // use the service slidesSvc to get get the slides data
   slidesSvc.getSlides().then(function(response) {
     $scope.slides = response.data.result;
@@ -19,7 +19,7 @@ Product.controller('slideCtrl', function($scope, slidesSvc) {
     this.results = response.data.result;
     //we need to append some divs into the html of the carousel
     for (var i = 0; i < results.length; i++) {
-      //only the first div is setted active  
+      //only the first div is setted active
       if(i < 1) {
         $('<div/>', {
             "class": 'item active slideShow-photo--bg',
