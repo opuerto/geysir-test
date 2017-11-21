@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Product">
 
 <head>
   <meta charset="utf-8">
@@ -7,11 +7,17 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/vendor/daterangepicker.css">
   <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/vendor/angular.min.js"></script>
+  <script src="/js/vendor/ui-bootstrap-tpls-2.5.0.min.js"></script>
+  <script src="/js/vendor/angurlar-resource.js"></script>
+  <script src="/js/app/pages/products/productPage.js"></script>
+
+
 
   <title>geysir</title>
 </head>
 
-<body>
+<body ng-controller="mainCtrl as vm">
   <nav class="navbar navbar-default">
     <div class="container-fluid navbar-container">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -47,7 +53,7 @@
     </div>
     <!-- /.container-fluid -->
   </nav>
-  <section class="slideShow">
+  <section class="slideShow" ng-controller="slideCtrl">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <!--ol class="carousel-indicators">
@@ -56,19 +62,21 @@
       </ol-->
 
       <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-        <div class="item active slideShow-photo--bg" style="background-image: url(//www.geysir.is/images/normal/slides/12B0D218-B65B-4EAE-879C-4B7EF8772083.jpg)">
+      <div id="slider-inner" class="carousel-inner" role="listbox">
+
+        <!--div class="item active slideShow-photo--bg" style="background-image: url(//www.geysir.is/images/normal/slides/12B0D218-B65B-4EAE-879C-4B7EF8772083.jpg)">
           <!--img class="slideShow-photo" src="//www.geysir.is/images/normal/slides/12B0D218-B65B-4EAE-879C-4B7EF8772083.jpg" alt="image 1"-->
           <!--div class="carousel-caption">
             hello my name is oscar
           </div-->
-        </div>
+        <!--/div>
         <div class="item slideShow-photo--bg" style="background-image: url(//www.geysir.is/images/normal/slides/8AD091EC-5D46-4646-A46D-2127A171AAC2.jpg)">
           <!--img class="slideShow-photo" src="//www.geysir.is/images/normal/slides/8AD091EC-5D46-4646-A46D-2127A171AAC2.jpg" alt="image 2"-->
           <!--div class="carousel-caption" >
             hello my name is oscar 2
           </div-->
-        </div>
+        <!--/div-->
+
 
       </div>
 
@@ -83,6 +91,7 @@
     </a>
     </div>
   </section>
+
   <section class="car__title">
     <div class="container">
       <div class="row">
@@ -105,11 +114,7 @@
           <div class="car__info-inner">
             <div class="car__info--left">
               <ul>
-                <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</li>
-                <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</li>
-                <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</li>
-                <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</li>
-
+                <li ng-repeat="slide in slides">{{slide.path}}</li>
               </ul>
             </div>
             <div class="car__info--middle">
@@ -165,21 +170,23 @@
               <div class="ib-row">
                 <div class="ib-timepickers">
                   <div class="input-group">
-                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="daterange" value="01/01/2015 - 01/31/2015">
+                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="daterange" value="01/01/2015 - 01/31/2015">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                   </div>
                   <!--div class="inputsTest">start Date</div-->
                 </div>
                 <div class="ib-timepickers">
-                  <div class="inputsTest">End Date</div>
+                  <input type="text" ng-model="yourName">
+                  <!--div class="inputsTest">End Date</div-->
                 </div>
               </div>
               <div class="ib-row">
                 <div class="ib-timepickers">
-                  <div class="inputsTest">Start Time</div>
+                  <div class="inputsTest">{{yourName}}</div>
                 </div>
                 <div class="ib-timepickers">
-                  <div class="inputsTest">End time</div>
+                  <div class="inputsTest">{{prueba}}</div>
+
                 </div>
               </div>
             </div>
@@ -211,13 +218,11 @@
 
   </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+  <script src="/js/geysir.js" type="text/javascript"></script>
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="/js/vendor/moment.min.js"></script>
   <script src="/js/vendor/daterangepicker.js"></script>
-  <script src="/js/geysir.js"></script>
-
 </body>
 
 </html>
