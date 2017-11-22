@@ -146,7 +146,7 @@
       </div>
     </div>
   </section>
-  <section class="rental__periodform">
+  <section class="rental__periodform" style="margin-bottom:10rem">
     <div class="container">
       <div class="row">
         <div class="rental__periodform-selectors u-smaller-container">
@@ -171,13 +171,13 @@
               <div class="ib-row">
                 <div class="ib-timepickers">
                   <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker1" type="text" class="form-control input-small">
+                    <input id="timepicker1"  type="text" class="form-control input-small">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                   </div>
                 </div>
                 <div class="ib-timepickers">
                   <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker2" type="text" class="form-control input-small">
+                    <input id="timepicker2"  type="text" class="form-control input-small">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                   </div>
                 </div>
@@ -201,6 +201,15 @@
               <div class="ib-row">
                 <div class="ib-location-select">
                   <div class="inputsTest">End Location</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" ng-if="showExtraDayMessage">
+            <div class="show-extraDay-messageBox">
+              <div class="col-md-12">
+                <div class="show-extraDay-message">
+                  an extra day has been added because the end time exceeds start time
                 </div>
               </div>
             </div>

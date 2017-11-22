@@ -75,4 +75,16 @@
   .inputsTest {
     background-color: $color-primary-input;
   }
+
+  .show-extraDay-messageBox {
+    width: 70%;
+    margin: 0 auto;
+
+    .show-extraDay-message {
+      text-transform: uppercase;
+      color:$color-primary;
+      font-weight: 700;
+      padding: 3rem;
+    }
+  }
 }

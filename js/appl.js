@@ -6,16 +6,22 @@ const apiInfo = {
   url: "http://www2.geysir.is/hub/api/json/reply/",
   token: "4F301E2A-8C23-4CEB-AB0C-082F6DEB1A6B"
 }
+
 Product.controller('mainCtrl', function($scope,
   $location, slidesSvc,
   getVehicleByIdSvc, getVehicleByIdSvc,
   getPriceForProduct
 ) {
   $scope.price = 0;
-
+  var now = moment();
+  var timeSettings = {
+      startDate : now.format('DD/MM/YYYY'),
+      endDate : now.format('DD/MM/YYYY'),
+      startTime : "00:00:00",
+      endTime : "00:00:00"
+  }
   //call the service to fetch the data about the vehicle
   var vehicleData = null;
-  var now = moment();
   getVehicleByIdSvc.fetchData().then(function(response) {
     vehicleData = response.data.result;
     //console.log(vehicleData);
@@ -30,19 +36,21 @@ Product.controller('mainCtrl', function($scope,
 
   /*Jquery callbacks and componets */
   //This section controls the datepickers and the times pickers
+  $scope.showExtraDayMessage = false;
   $('#daterange').daterangepicker({
     "minDate": now
   })
 
   $('#daterange').on('apply.daterangepicker', function(ev, picker) {
     //this code it will be trigger when the user hit the apply button
-    console.log(picker.startDate.format('DD/MM/YYYY'));
-    console.log(picker.endDate.format('DD/MM/YYYY'));
-    var startDate = picker.startDate.format('DD/MM/YYYY');
-    var endDate = picker.endDate.format('DD/MM/YYYY');
+    timeSettings.startDate = picker.startDate.format('DD/MM/YYYY');
+    timeSettings.endDate = picker.endDate.format('DD/MM/YYYY');
+    var startDate = timeSettings.startDate+" "+timeSettings.startTime;
+    var endDate = timeSettings.endDate+" "+timeSettings.endTime;
     //This section call the service to fetch the price for each product
     getPriceForProduct.fetchData(startDate,endDate).then(function(response) {
         $scope.price = response.data.result;
+
     });
   });
   $('#timepicker1').timepicker({
@@ -58,6 +66,47 @@ Product.controller('mainCtrl', function($scope,
     maxHours: 24
 
   });
+
+
+  $('#timepicker1').timepicker().on('hide.timepicker', function(e) {
+    var startTime = e.time.value + ":00";
+    var startDate = timeSettings.startDate+" "+startTime;
+    var endDate = timeSettings.endDate+" "+timeSettings.endTime;
+    //This section call the service to fetch the price for each product
+    getPriceForProduct.fetchData(startDate,endDate).then(function(response) {
+        if(response.data.result > 0)
+        $scope.price = response.data.result;
+        timeSettings.startTime = startTime;
+
+        //Check we should charche an extra day and show the message
+        showDayExtraMessage(timeSettings.startTime,timeSettings.endTime);
+
+    });
+ });
+
+ $('#timepicker2').timepicker().on('hide.timepicker', function(e) {
+   var endTime = e.time.value + ":00";
+   var startDate = timeSettings.startDate+" "+timeSettings.startTime;
+   var endDate = timeSettings.endDate+" "+endTime;
+   //This section call the service to fetch the price for each product
+   getPriceForProduct.fetchData(startDate,endDate).then(function(response) {
+        if(response.data.result > 0)
+       $scope.price = response.data.result;
+       timeSettings.endTime = endTime;
+       showDayExtraMessage(timeSettings.startTime,timeSettings.endTime);
+
+   });
+});
+
+/***** Helper functions ********/
+
+showDayExtraMessage = function(timeStart,timeEnd) {
+  var same = moment(timeSettings.startDate,'DD/MM/YYYY').isSame(moment(timeSettings.endDate,'DD/MM/YYYY'));
+    if(!same) {
+      $scope.showExtraDayMessage = moment(timeStart,"HH:mm:ss").isBefore(moment(timeEnd,"HH:mm:ss"));
+      console.log($scope.showExtraDayMessage);
+    }
+}
 });
 
 //this controller is meant to be used for the slider
