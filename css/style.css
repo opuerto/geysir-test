@@ -82,6 +82,15 @@ body {
   .rental__periodform-inputboxes .ib-timepickers {
     width: 50%;
     width: calc((100% - .4rem)/2); }
+  .rental__periodform-inputboxes .ib-timepickers-fullWidth {
+    width: 100%;
+    margin-bottom: .4rem; }
+    .rental__periodform-inputboxes .ib-timepickers-fullWidth .input-group .input-date {
+      border-radius: 0;
+      background-color: #cecece; }
+    .rental__periodform-inputboxes .ib-timepickers-fullWidth .input-group .timepicker-addon {
+      border-radius: 0;
+      background-color: #cecece; }
 
 .rental__periodform .inputsTest {
   background-color: #cecece; }

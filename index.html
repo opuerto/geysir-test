@@ -6,10 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/vendor/daterangepicker.css">
+  <link rel="stylesheet" href="/css/vendor/bootstrap-timepicker.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <script src="/js/vendor/angular.min.js"></script>
   <script src="/js/vendor/ui-bootstrap-tpls-2.5.0.min.js"></script>
   <script src="/js/vendor/angurlar-resource.js"></script>
+  <!--script src="/js/app/pages/products/productPage.js"></script-->
+  <!--only for heroku app -->
   <script src="/js/appl.js"></script>
 
 
@@ -152,30 +155,31 @@
             <div class="rental__periodform-time">
               <div class="rental__periodform-box">
                 <span class="span-title">Rental</span>
-                <span class="span-price">€ 0</span>
+                <span class="span-price">€ <span ng-bind="price"></span></span>
               </div>
             </div>
             <div class="rental__periodform-inputboxes">
               <div class="ib-row">
-                <div class="ib-timepickers">
+                <div class="ib-timepickers-fullWidth">
                   <div class="input-group">
-                    <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="daterange" value="01/01/2015 - 01/31/2015">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input type="text" class="form-control input-date" id="daterange" name="daterange" value="PICK YOUR DATES">
+                    <span class="input-group-addon timepicker-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                   </div>
                   <!--div class="inputsTest">start Date</div-->
-                </div>
-                <div class="ib-timepickers">
-                  <input type="text" ng-model="yourName">
-                  <!--div class="inputsTest">End Date</div-->
                 </div>
               </div>
               <div class="ib-row">
                 <div class="ib-timepickers">
-                  <div class="inputsTest">{{yourName}}</div>
+                  <div class="input-group bootstrap-timepicker timepicker">
+                    <input id="timepicker1" type="text" class="form-control input-small">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                  </div>
                 </div>
                 <div class="ib-timepickers">
-                  <div class="inputsTest"></div>
-
+                  <div class="input-group bootstrap-timepicker timepicker">
+                    <input id="timepicker2" type="text" class="form-control input-small">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -212,6 +216,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="/js/vendor/moment.min.js"></script>
   <script src="/js/vendor/daterangepicker.js"></script>
+  <script src="/js/vendor/bootstrap-timepicker.min.js"></script>
 </body>
 
 </html>

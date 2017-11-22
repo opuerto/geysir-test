@@ -45,12 +45,30 @@
           margin-right: 0.4rem;
         }
       }
+
+
     }
 
     .ib-timepickers {
       width: 50%;
 
       width: calc((100% - .4rem)/2);
+
+    }
+    .ib-timepickers-fullWidth {
+      width: 100%;
+      margin-bottom: .4rem;
+
+      .input-group{
+        .input-date {
+          border-radius: 0;
+          background-color: $color-primary-input;
+        }
+        .timepicker-addon  {
+         border-radius: 0;
+         background-color: $color-primary-input;
+       }
+      }
 
     }
   }
