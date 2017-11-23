@@ -57,6 +57,16 @@
       ul li:hover {
         background-color: white;
       }
+
+      &-place {
+        display: inline-block;
+      }
+      &-price {
+        position: absolute;
+        right: 2rem;
+        display: inline-block;
+        margin-left: 3rem;
+      }
     }
   }
   .show {

@@ -161,6 +161,13 @@ body {
           padding-bottom: 0; }
       .dwn__select .dwn__select-list .dwn__select-content ul li:hover {
         background-color: white; }
+      .dwn__select .dwn__select-list .dwn__select-content-place {
+        display: inline-block; }
+      .dwn__select .dwn__select-list .dwn__select-content-price {
+        position: absolute;
+        right: 2rem;
+        display: inline-block;
+        margin-left: 3rem; }
   .dwn__select .show {
     display: block; }
 

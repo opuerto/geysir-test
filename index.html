@@ -189,7 +189,7 @@
             <div class="rental__periodform-location">
               <div class="rental__periodform-box">
                 <span class="span-title">Location</span>
-                <span class="span-price">€ 0</span>
+                <span class="span-price">€ <span ng-bind="locationPrice"></span></span>
               </div>
             </div>
             <div class="rental__periodform-inputboxes">
@@ -206,10 +206,14 @@
                     <div class="dwn__select-list">
                       <div id="pickUpLocation" class="dwn__select-content">
                         <ul>
-                          <li clas="dwn_select-listItems">kef</li>
-                          <li clas="dwn_select-listItems">Akureyri</li>
-                          <li clas="dwn_select-listItems">hotel</li>
-                          <li clas="dwn_select-listItems">reyk</li>
+                          <li clas="dwn_select-listItems" ng-repeat="pl in pickUpL">
+                            <span class="dwn__select-content-place" ng-bind="pl.code"></span>
+                            <span class="dwn__select-content-price">
+                              <span>
+                                € <span ng-bind="pl.showPrice"></span>
+                              </span>
+                            </span>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -230,10 +234,14 @@
                     <div class="dwn__select-list">
                       <div id="dropUpLocation" class="dwn__select-content">
                         <ul>
-                          <li clas="dwn_select-listItems">kef</li>
-                          <li clas="dwn_select-listItems">Akureyri</li>
-                          <li clas="dwn_select-listItems">hotel</li>
-                          <li clas="dwn_select-listItems">reyk</li>
+                          <li clas="dwn_select-listItems" ng-repeat="dl in dropOff">
+                            <span class="dwn__select-content-place" ng-bind="dl.code"></span>
+                            <span class="dwn__select-content-price">
+                              <span>
+                                € <span ng-bind="dl.showPrice"></span>
+                              </span>
+                            </span>
+                          </li>
                         </ul>
                       </div>
                     </div>
