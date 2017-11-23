@@ -12,7 +12,7 @@ Product.controller('mainCtrl', function($scope,
   getVehicleByIdSvc, getVehicleByIdSvc,
   getPriceForProduct
 ) {
-  $scope.price = 0;
+  $scope.rentalPrice = 0;
   var now = moment();
   var timeSettings = {
       startDate : now.format('DD/MM/YYYY'),
@@ -49,7 +49,7 @@ Product.controller('mainCtrl', function($scope,
     var endDate = timeSettings.endDate+" "+timeSettings.endTime;
     //This section call the service to fetch the price for each product
     getPriceForProduct.fetchData(startDate,endDate).then(function(response) {
-        $scope.price = response.data.result;
+        $scope.rentalPrice = response.data.result;
 
     });
   });
@@ -75,7 +75,7 @@ Product.controller('mainCtrl', function($scope,
     //This section call the service to fetch the price for each product
     getPriceForProduct.fetchData(startDate,endDate).then(function(response) {
         if(response.data.result > 0)
-        $scope.price = response.data.result;
+        $scope.rentalPrice = response.data.result;
         timeSettings.startTime = startTime;
 
         //Check we should charche an extra day and show the message
@@ -91,12 +91,13 @@ Product.controller('mainCtrl', function($scope,
    //This section call the service to fetch the price for each product
    getPriceForProduct.fetchData(startDate,endDate).then(function(response) {
         if(response.data.result > 0)
-       $scope.price = response.data.result;
+       $scope.rentalPrice = response.data.result;
        timeSettings.endTime = endTime;
        showDayExtraMessage(timeSettings.startTime,timeSettings.endTime);
 
    });
 });
+
 
 /***** Helper functions ********/
 
@@ -107,6 +108,14 @@ showDayExtraMessage = function(timeStart,timeEnd) {
       console.log($scope.showExtraDayMessage);
     }
 }
+
+$scope.displayList = function (contentId) {
+  /*when the user click on the select,
+  toggle between hiding and showing the dropdown content */
+  document.getElementById(contentId).classList.toggle("show");
+}
+
+
 });
 
 //this controller is meant to be used for the slider
