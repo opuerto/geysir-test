@@ -199,14 +199,14 @@
                   <div class="dwn__select">
                     <div class="dwn__select-container">
                       <div class="dwn__select-default" ng-click="displayList('pickUpLocation')">
-                        <span class="locTxt">Start Location</span>
+                        <span id="pickUpTxt" class="locTxt">Start Location</span>
                       </div>
                       <a href="#" class="dwn__select-btn" ng-click="displayList('pickUpLocation')"><span><i class="glyphicon glyphicon-chevron-down icon"></i></span></a>
                     </div>
                     <div class="dwn__select-list">
                       <div id="pickUpLocation" class="dwn__select-content">
                         <ul>
-                          <li clas="dwn_select-listItems" ng-repeat="pl in pickUpL">
+                          <li clas="dwn_select-listItems" ng-repeat="pl in pickUpL" ng-click="selectLocation(pl.id,pl.showPrice,pl.code,pl.type)">
                             <span class="dwn__select-content-place" ng-bind="pl.code"></span>
                             <span class="dwn__select-content-price">
                               <span>
@@ -227,14 +227,14 @@
                   <div class="dwn__select">
                     <div class="dwn__select-container">
                       <div class="dwn__select-default" ng-click="displayList('dropUpLocation')">
-                        <span class="locTxt">End Location</span>
+                        <span id="dropOffTxt" class="locTxt">End Location</span>
                       </div>
                       <a href="#" class="dwn__select-btn" ng-click="displayList('dropUpLocation')"><span><i class="glyphicon glyphicon-chevron-down icon"></i></span></a>
                     </div>
                     <div class="dwn__select-list">
                       <div id="dropUpLocation" class="dwn__select-content">
                         <ul>
-                          <li clas="dwn_select-listItems" ng-repeat="dl in dropOff">
+                          <li clas="dwn_select-listItems" ng-repeat="dl in dropOff" ng-click="selectLocation(dl.id,dl.showPrice,dl.code,dl.type)">
                             <span class="dwn__select-content-place" ng-bind="dl.code"></span>
                             <span class="dwn__select-content-price">
                               <span>
