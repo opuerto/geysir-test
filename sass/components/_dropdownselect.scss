@@ -1,0 +1,65 @@
+.dwn__select {
+  width: 100%;
+  &-container {
+    @include clearfix;
+  }
+  //@include clearfix;
+  &-default {
+    width: 90%;
+    float: left;
+    background-color: $color-primary-input;
+    padding: .5rem 1.5rem;
+    min-height: 35px;
+    cursor: pointer;
+
+  }
+  &-btn {
+    width: 10%;
+    float: right;
+    background-color: $color-primary-input;
+    padding: .5rem 1.5rem;
+    min-height: 35px;
+    display: inline-block;
+    &:link,
+    &:visited {
+      color:$color-dark-gray;
+    }
+
+  }
+
+  .dwn__select-list {
+    position: relative;
+    width: 100%;
+    @include clearfix;
+    .dwn__select-content {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 99;
+      background-color: $color-primary-input;
+      display: none;
+      cursor: pointer;
+      max-height: 250px;
+      overflow: hidden;
+      overflow-y: scroll;
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+      ul li {
+        list-style: none;
+        padding: .5rem 1.5rem;
+        border-bottom: 2px solid $color-dark-gray;
+        &:last-child {
+          padding-bottom: 0;
+        }
+      }
+      ul li:hover {
+        background-color: white;
+      }
+    }
+  }
+  .show {
+    display: block;
+  }
+}

@@ -11,9 +11,9 @@
   <script src="/js/vendor/angular.min.js"></script>
   <script src="/js/vendor/ui-bootstrap-tpls-2.5.0.min.js"></script>
   <script src="/js/vendor/angurlar-resource.js"></script>
-  <!--script src="/js/app/pages/products/productPage.js"></script-->
+  <script src="/js/app/pages/products/productPage.js"></script>
   <!--only for heroku app -->
-  <script src="/js/appl.js"></script>
+  <!--script src="/js/appl.js"></script-->
 
 
 
@@ -155,7 +155,7 @@
             <div class="rental__periodform-time">
               <div class="rental__periodform-box">
                 <span class="span-title">Rental</span>
-                <span class="span-price">€ <span ng-bind="price"></span></span>
+                <span class="span-price">€ <span ng-bind="rentalPrice"></span></span>
               </div>
             </div>
             <div class="rental__periodform-inputboxes">
@@ -195,12 +195,51 @@
             <div class="rental__periodform-inputboxes">
               <div class="ib-row">
                 <div class="ib-location-select">
-                  <div class="inputsTest">Start Location</div>
+                  <!--div class="inputsTest">Start Location</div-->
+                  <div class="dwn__select">
+                    <div class="dwn__select-container">
+                      <div class="dwn__select-default" ng-click="displayList('pickUpLocation')">
+                        <span class="locTxt">Start Location</span>
+                      </div>
+                      <a href="#" class="dwn__select-btn" ng-click="displayList('pickUpLocation')"><span><i class="glyphicon glyphicon-chevron-down icon"></i></span></a>
+                    </div>
+                    <div class="dwn__select-list">
+                      <div id="pickUpLocation" class="dwn__select-content">
+                        <ul>
+                          <li clas="dwn_select-listItems">kef</li>
+                          <li clas="dwn_select-listItems">Akureyri</li>
+                          <li clas="dwn_select-listItems">hotel</li>
+                          <li clas="dwn_select-listItems">reyk</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
               </div>
               <div class="ib-row">
                 <div class="ib-location-select">
-                  <div class="inputsTest">End Location</div>
+                  <!--div class="inputsTest">End Location</div-->
+                  <div class="dwn__select">
+                    <div class="dwn__select-container">
+                      <div class="dwn__select-default" ng-click="displayList('dropUpLocation')">
+                        <span class="locTxt">End Location</span>
+                      </div>
+                      <a href="#" class="dwn__select-btn" ng-click="displayList('dropUpLocation')"><span><i class="glyphicon glyphicon-chevron-down icon"></i></span></a>
+                    </div>
+                    <div class="dwn__select-list">
+                      <div id="dropUpLocation" class="dwn__select-content">
+                        <ul>
+                          <li clas="dwn_select-listItems">kef</li>
+                          <li clas="dwn_select-listItems">Akureyri</li>
+                          <li clas="dwn_select-listItems">hotel</li>
+                          <li clas="dwn_select-listItems">reyk</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
                 </div>
               </div>
             </div>
