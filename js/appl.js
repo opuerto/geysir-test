@@ -14,14 +14,16 @@ Product.controller('mainCtrl', function($scope, $http,
 ) {
   var now, timeSettings, vehicleData,
     pickUpLocationList, dropOffLocationList,
-    DropDownSelected;
+    DropDownSelected, extras, totalDays;
   now = moment()
   timeSettings = {
     startDate: now.format('DD/MM/YYYY'),
     endDate: now.format('DD/MM/YYYY'),
     startTime: "00:00:00",
-    endTime: "00:00:00"
+    endTime: "00:00:00",
+    totalDays:0
   }
+
   DropDownSelected = {
     pickUpLocation: {
       id: null,
@@ -45,6 +47,7 @@ Product.controller('mainCtrl', function($scope, $http,
   vehicleData = null;
   pickUpLocationList = [];
   dropOffLocationList = [];
+  extras = [];
   $scope.pickUpL = pickUpLocationList;
   $scope.dropOff = dropOffLocationList;
   $scope.rentalPrice = 0;
@@ -54,8 +57,16 @@ Product.controller('mainCtrl', function($scope, $http,
 
   getVehicleByIdSvc.fetchData().then(function(response) {
     vehicleData = response.data.result;
-    $scope.vehicleData = vehicleData;
-
+    for (var i = 0; i < vehicleData.extras.length; i++) {
+        vehicleData.extras[i].showPrice = vehicleData.extras[i].price;
+        vehicleData.extras[i].totalPrice = 0;
+        if(vehicleData.extras[i].isMultiple) {
+            vehicleData.extras[i].extrasStates = {initialState:true,addOneState:false,removeOneState:false};
+        }
+          extras.push(vehicleData.extras[i]);
+    }
+    $scope.extras = extras;
+      console.log(extras);
   });
 
   //This section call the service to fetch the list of product locations
@@ -256,10 +267,6 @@ Product.controller('mainCtrl', function($scope, $http,
         drop.classList.add("show");
     }
 
-    //var drop = document.getElementById(contentId);
-    //drop.classList.toggle("show");
-    //drop.classList.toggle("dropActive");
-    //document.getElementById(contentId).classList.add("dropActive");
   }
 
   //after click event in the dropDown call this function
@@ -283,10 +290,65 @@ Product.controller('mainCtrl', function($scope, $http,
 
     //recalculate the price of the location
     calculateLocationPrice();
+  }
+  //add one to the item
+  $scope.addToMultipleExtra = function (id) {
+      var extra,getTotalDay,TotalDays,state;
+      //let {extraId,initialState,addOneState,removeOneState} = state;
+      getTotalDay = calculateTotalDays();
+      totalDays = (getTotalDay < 1) ? 1 : getTotalDay;
+      for (var i = 0; i < extras.length; i++) {
+        if(extras[i].id === id) {
+          extra = extras[i];
+        }
+      }
+      if (extra.extrasStates.initialState) {
+          extra.amount++;
+          extra.selected = true;
+          extra.showPrice = extra.amount * extra.price;
+          document.getElementById("price-"+id)
+          .classList.add("removeLine");
+          if (extra.type === "PerDay") {
+            extra.totalPrice = (extra.showPrice * totalDays);
+          }
+          extra.extrasStates.initialState = false;
+          extra.extrasStates.addOneState = true;
+          //Todo: calculate the total price
+      } else if (extra.extrasStates.addOneState) {
+          extra.amount++;
+          extra.showPrice = extra.amount * extra.price;
+          if (extra.type === "PerDay") {
+            extra.totalPrice = (extra.showPrice * totalDays);
+          }
+        }
+  }
 
-
+  $scope.removeToMultipleExtras = function (id) {
 
   }
+
+  //Calculate the total days of the rental
+  calculateTotalDays = function (){
+    let {
+       startDate,
+       endDate,
+       startTime,
+       endTime,
+       totalDays
+     } = timeSettings;
+    var pickUpDay, dropOffDay,pickUpDayFormatted,dropOffDayFormatted,duration;
+    pickUpDay = startDate+" "+startTime;
+    dropOffDay = endDate+" "+endTime;
+    pickUpDayFormatted = moment(pickUpDay, 'DD/MM/YYYY HH:mm:ss');
+    dropOffDayFormatted = moment(dropOffDay, 'DD/MM/YYYY HH:mm:ss');
+    duration = moment.duration(dropOffDayFormatted.diff(pickUpDayFormatted));
+    var diffDays = duration.asDays();
+    totalDays = diffDays;
+    return diffDays;
+  }
+
+
+
 
 
 });
@@ -320,6 +382,7 @@ Product.controller('slideCtrl', function($scope, slidesSvc) {
   });
 
 })
+
 
 /*
   Services

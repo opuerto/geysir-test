@@ -400,3 +400,5 @@ body {
       float: right;
       padding-top: 4px;
       text-decoration: line-through; }
+    .extraBig-container .orderItemInner .removeLine {
+      text-decoration: none; }

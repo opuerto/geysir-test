@@ -231,10 +231,11 @@
       float:right;
       padding-top: 4px;
        text-decoration: line-through;
-
     }
 
-
+    .removeLine {
+      text-decoration: none;
+    }
 
   }
 }

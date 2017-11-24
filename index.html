@@ -275,11 +275,11 @@
             </div>
           </div>
           <div class="rental__extras-itemsContainer">
-            <div class="orderItems-row" ng-repeat="extra in vehicleData.extras">
+            <div class="orderItems-row" ng-repeat="extra in extras">
               <div class="extraSmall-container">
                 <div class="counterContainer" ng-if="extra.isMultiple">
-                  <div class="btnUp" ng-click=""><span><i class="glyphicon glyphicon-chevron-up icon"></i></span></div>
-                  <div href="#" class="btnDown"><span><i class="glyphicon glyphicon-chevron-down icon"></i></span></div>
+                  <a class="btnUp" ng-click="addToMultipleExtra(extra.id)"><span><i class="glyphicon glyphicon-chevron-up icon" ></i></span></a>
+                  <a class="btnDown" ng-click="removeToMultipleExtras(extra.id)"><span><i class="glyphicon glyphicon-chevron-down icon"></i></span></a>
                 </div>
                 <div class="checkBoxContainer" ng-if="!extra.isMultiple">
                   <div class="input-group">
@@ -291,7 +291,7 @@
                 <div class="orderItemInner">
                   <span class="xtraName"><span ng-if="extra.isMultiple"><span ng-bind="extra.amount"></span> - </span> <span ng-bind="extra.code"></span></span>
                   <!--span class="xtraShow"><span class="symbol">?</span></span-->
-                  <span class="xtraPrice">€ <span ng-bind="extra.price"></span></span>
+                  <span id="price-{{extra.id}}" class="xtraPrice">€ <span ng-bind="extra.showPrice"></span></span>
                 </div>
               </div>
             </div>
