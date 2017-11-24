@@ -34,6 +34,10 @@ Product.controller('mainCtrl', function($scope, $http,
       code: "",
       price: 0,
       selected: false
+    },
+    dropDownActive: {
+      id:"",
+      active:false
     }
   }
 
@@ -224,7 +228,36 @@ Product.controller('mainCtrl', function($scope, $http,
   $scope.displayList = function(contentId) {
     /*when the user click on the select,
     toggle between hiding and showing the dropdown content */
-    document.getElementById(contentId).classList.toggle("show");
+    if (DropDownSelected.dropDownActive.id ==="") {
+      DropDownSelected.dropDownActive.id = contentId;
+      DropDownSelected.dropDownActive.active = true;
+      var drop = document.getElementById(contentId);
+      drop.classList.add("show");
+    } else if(DropDownSelected.dropDownActive.id === contentId && DropDownSelected.dropDownActive.active) {
+      var drop = document.getElementById(contentId);
+      drop.classList.remove("show");
+      DropDownSelected.dropDownActive.active = false;
+    } else if(DropDownSelected.dropDownActive.id === contentId && !DropDownSelected.dropDownActive.active) {
+      var drop = document.getElementById(contentId);
+      drop.classList.add("show");
+      DropDownSelected.dropDownActive.active = true;
+    } else if (DropDownSelected.dropDownActive.id !== contentId && !DropDownSelected.dropDownActive.active) {
+        DropDownSelected.dropDownActive.id = contentId;
+        DropDownSelected.dropDownActive.active = true;
+        var drop = document.getElementById(contentId);
+        drop.classList.add("show");
+    } else if (DropDownSelected.dropDownActive.id !== contentId && DropDownSelected.dropDownActive.active) {
+        document.getElementById(DropDownSelected.dropDownActive.id).classList.remove("show");
+        DropDownSelected.dropDownActive.id = contentId;
+        DropDownSelected.dropDownActive.active = true;
+        var drop = document.getElementById(contentId);
+        drop.classList.add("show");
+    }
+
+    //var drop = document.getElementById(contentId);
+    //drop.classList.toggle("show");
+    //drop.classList.toggle("dropActive");
+    //document.getElementById(contentId).classList.add("dropActive");
   }
 
   //after click event in the dropDown call this function
