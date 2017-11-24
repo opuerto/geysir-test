@@ -1,4 +1,5 @@
 .rental__periodform {
+  margin-bottom: 1rem;
   &-selectors {}
 
   &-time {}
@@ -17,15 +18,7 @@
     color: $color-light-gray;
   }
 
-  .span-title {
-    float: left;
-    display: inline-block;
-  }
 
-  .span-price {
-    float: right;
-    display: inline-block;
-  }
 
   &-inputboxes {
     @include clearfix;
@@ -87,4 +80,14 @@
       padding: 3rem;
     }
   }
+}
+
+.span-title {
+  float: left;
+  display: inline-block;
+}
+
+.span-price {
+  float: right;
+  display: inline-block;
 }

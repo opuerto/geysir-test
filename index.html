@@ -15,8 +15,6 @@
   <!--only for heroku app -->
   <script src="/js/appl.js"></script>
 
-
-
   <title>geysir</title>
 </head>
 
@@ -146,7 +144,7 @@
       </div>
     </div>
   </section>
-  <section class="rental__periodform" style="margin-bottom:10rem">
+  <section class="rental__periodform">
     <div class="container">
       <div class="row">
         <div class="rental__periodform-selectors u-smaller-container">
@@ -171,13 +169,13 @@
               <div class="ib-row">
                 <div class="ib-timepickers">
                   <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker1"  type="text" class="form-control input-small">
+                    <input id="timepicker1" type="text" class="form-control input-small">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                   </div>
                 </div>
                 <div class="ib-timepickers">
                   <div class="input-group bootstrap-timepicker timepicker">
-                    <input id="timepicker2"  type="text" class="form-control input-small">
+                    <input id="timepicker2" type="text" class="form-control input-small">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                   </div>
                 </div>
@@ -198,7 +196,7 @@
                   <!--div class="inputsTest">Start Location</div-->
                   <div class="dwn__select">
                     <div class="dwn__select-container" ng-click="displayList('pickUpLocation')">
-                      <div class="dwn__select-default" >
+                      <div class="dwn__select-default">
                         <span id="pickUpTxt" class="locTxt">Start Location</span>
                       </div>
                       <a href="#" class="dwn__select-btn"><span><i class="glyphicon glyphicon-chevron-down icon"></i></span></a>
@@ -211,7 +209,7 @@
                             <span class="dwn__select-content-price">
                               <span>
                                 € <span ng-bind="pl.showPrice"></span>
-                              </span>
+                            </span>
                             </span>
                           </li>
                         </ul>
@@ -239,7 +237,7 @@
                             <span class="dwn__select-content-price">
                               <span>
                                 € <span ng-bind="dl.showPrice"></span>
-                              </span>
+                            </span>
                             </span>
                           </li>
                         </ul>
@@ -248,23 +246,60 @@
 
                   </div>
                 </div>
-                </div>
               </div>
             </div>
           </div>
-          <div class="row" ng-if="showExtraDayMessage">
-            <div class="show-extraDay-messageBox">
-              <div class="col-md-12">
-                <div class="show-extraDay-message">
-                  an extra day has been added because the end time exceeds start time
-                </div>
+        </div>
+        <div class="row" ng-if="showExtraDayMessage">
+          <div class="show-extraDay-messageBox">
+            <div class="col-md-12">
+              <div class="show-extraDay-message">
+                an extra day has been added because the end time exceeds start time
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    </div>
 
+  </section>
+  <section class="rental__extras">
+    <div class="container">
+      <div class="row">
+        <div class="u-smaller-container">
+          <div class="rental__heading">
+            <div class="rental__periodform-box">
+              <span class="span-title">Extras</span>
+              <span class="span-price">€ <span ng-bind="extrasPrice"></span></span>
+            </div>
+          </div>
+          <div class="rental__extras-itemsContainer">
+            <div class="orderItems-row" ng-repeat="extra in vehicleData.extras">
+              <div class="extraSmall-container">
+                <div class="counterContainer" ng-if="extra.isMultiple">
+                  <div class="btnUp" ng-click=""><span><i class="glyphicon glyphicon-chevron-up icon"></i></span></div>
+                  <div href="#" class="btnDown"><span><i class="glyphicon glyphicon-chevron-down icon"></i></span></div>
+                </div>
+                <div class="checkBoxContainer" ng-if="!extra.isMultiple">
+                  <div class="input-group">
+                    <input type="checkbox" aria-label="...">
+                 </div>
+                </div>
+              </div>
+              <div class="extraBig-container">
+                <div class="orderItemInner">
+                  <span class="xtraName"><span ng-if="extra.isMultiple"><span ng-bind="extra.amount"></span> - </span> <span ng-bind="extra.code"></span></span>
+                  <!--span class="xtraShow"><span class="symbol">?</span></span-->
+                  <span class="xtraPrice">€ <span ng-bind="extra.price"></span></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/js/geysir.js" type="text/javascript"></script>

@@ -49,10 +49,12 @@ Product.controller('mainCtrl', function($scope, $http,
   $scope.dropOff = dropOffLocationList;
   $scope.rentalPrice = 0;
   $scope.locationPrice = 0;
+  $scope.extrasPrice = 0;
 
 
   getVehicleByIdSvc.fetchData().then(function(response) {
     vehicleData = response.data.result;
+    $scope.vehicleData = vehicleData;
 
   });
 

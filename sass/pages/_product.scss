@@ -130,3 +130,111 @@
   }
 
 }
+
+// Section for the Extras
+.rental__extras-itemsContainer, .orderItems-row {
+  width: 100%;
+  @include clearfix;
+
+
+}
+.orderItems-row {
+  margin-bottom:0.4rem;
+
+}
+
+.extraSmall-container {
+  position: relative;
+  width:5%;
+  float: left;
+  margin-right: .4rem;
+  background-color: $color-primary-input;
+  height: 4.2rem;
+
+  .counterContainer {
+    width: 100%;
+    margin: 0 auto;
+    .btnUp {
+      display: inline-block;
+      position: absolute;
+      top:0;
+      left:50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      padding-top: 2px;
+      color:$color-dark-gray;
+      cursor: pointer;
+
+
+    }
+    .btnDown {
+      display: inline-block;
+      position:absolute;
+      bottom:0;
+      left:50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      padding-bottom: 2px;
+      cursor: pointer;
+        color:$color-dark-gray;
+
+    }
+  }
+
+  .checkBoxContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: pointer;
+
+  }
+}
+.extraBig-container {
+  width: calc((95% - .4rem));
+  float: left;
+  background-color: $color-primary-input;
+  height:4.2rem;
+  .orderItemInner {
+    padding: .5rem 1.5rem;
+    text-transform: uppercase;
+    position: relative;
+    height: 100%;
+    color: $color-dark-gray;
+    min-height: 3.5rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+    .xtraName {
+        float: left;
+        padding-top: 4px;
+    }
+    .xtraShow {
+      float: left;
+      padding-top: 4px;
+      margin: 0 3rem;
+      cursor: pointer;
+      background-color: $color-dark-gray;
+      color: $color-primary-input;
+      width: 30px;
+      border-radius: 50px;
+      .symbol {
+        display: block;
+        margin: 0 auto;
+        width: 10px;
+        padding-right: 5px;
+
+      }
+    }
+    .xtraPrice {
+      float:right;
+      padding-top: 4px;
+       text-decoration: line-through;
+
+    }
+
+
+
+  }
+}

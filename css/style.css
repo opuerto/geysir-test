@@ -45,70 +45,69 @@ body {
     background-size: cover;
     background-position: center; }
 
-.rental__periodform-box {
-  text-transform: uppercase;
-  width: 100%;
-  background-color: #4d4d4d;
-  padding: 0.5rem 1.5rem;
-  margin-bottom: 1rem;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #e0e0e0; }
-  .rental__periodform-box:after {
-    content: "";
-    display: table;
-    clear: both; }
-
-.rental__periodform .span-title {
-  float: left;
-  display: inline-block; }
-
-.rental__periodform .span-price {
-  float: right;
-  display: inline-block; }
-
-.rental__periodform-inputboxes {
-  width: 100%; }
-  .rental__periodform-inputboxes:after {
-    content: "";
-    display: table;
-    clear: both; }
-  .rental__periodform-inputboxes .ib-row {
-    width: 100%; }
-    .rental__periodform-inputboxes .ib-row:after {
+.rental__periodform {
+  margin-bottom: 1rem; }
+  .rental__periodform-box {
+    text-transform: uppercase;
+    width: 100%;
+    background-color: #4d4d4d;
+    padding: 0.5rem 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #e0e0e0; }
+    .rental__periodform-box:after {
       content: "";
       display: table;
       clear: both; }
-    .rental__periodform-inputboxes .ib-row:not(:last-child) {
+  .rental__periodform-inputboxes {
+    width: 100%; }
+    .rental__periodform-inputboxes:after {
+      content: "";
+      display: table;
+      clear: both; }
+    .rental__periodform-inputboxes .ib-row {
+      width: 100%; }
+      .rental__periodform-inputboxes .ib-row:after {
+        content: "";
+        display: table;
+        clear: both; }
+      .rental__periodform-inputboxes .ib-row:not(:last-child) {
+        margin-bottom: .4rem; }
+      .rental__periodform-inputboxes .ib-row [class="ib-timepickers"] {
+        float: left; }
+        .rental__periodform-inputboxes .ib-row [class="ib-timepickers"]:not(:last-child) {
+          margin-right: 0.4rem; }
+    .rental__periodform-inputboxes .ib-timepickers {
+      width: 50%;
+      width: calc((100% - .4rem)/2); }
+    .rental__periodform-inputboxes .ib-timepickers-fullWidth {
+      width: 100%;
       margin-bottom: .4rem; }
-    .rental__periodform-inputboxes .ib-row [class="ib-timepickers"] {
-      float: left; }
-      .rental__periodform-inputboxes .ib-row [class="ib-timepickers"]:not(:last-child) {
-        margin-right: 0.4rem; }
-  .rental__periodform-inputboxes .ib-timepickers {
-    width: 50%;
-    width: calc((100% - .4rem)/2); }
-  .rental__periodform-inputboxes .ib-timepickers-fullWidth {
-    width: 100%;
-    margin-bottom: .4rem; }
-    .rental__periodform-inputboxes .ib-timepickers-fullWidth .input-group .input-date {
-      border-radius: 0;
-      background-color: #cecece; }
-    .rental__periodform-inputboxes .ib-timepickers-fullWidth .input-group .timepicker-addon {
-      border-radius: 0;
-      background-color: #cecece; }
+      .rental__periodform-inputboxes .ib-timepickers-fullWidth .input-group .input-date {
+        border-radius: 0;
+        background-color: #cecece; }
+      .rental__periodform-inputboxes .ib-timepickers-fullWidth .input-group .timepicker-addon {
+        border-radius: 0;
+        background-color: #cecece; }
+  .rental__periodform .inputsTest {
+    background-color: #cecece; }
+  .rental__periodform .show-extraDay-messageBox {
+    width: 70%;
+    margin: 0 auto; }
+    .rental__periodform .show-extraDay-messageBox .show-extraDay-message {
+      text-transform: uppercase;
+      color: #b83400;
+      font-weight: 700;
+      padding: 3rem; }
 
-.rental__periodform .inputsTest {
-  background-color: #cecece; }
+.span-title {
+  float: left;
+  display: inline-block; }
 
-.rental__periodform .show-extraDay-messageBox {
-  width: 70%;
-  margin: 0 auto; }
-  .rental__periodform .show-extraDay-messageBox .show-extraDay-message {
-    text-transform: uppercase;
-    color: #b83400;
-    font-weight: 700;
-    padding: 3rem; }
+.span-price {
+  float: right;
+  display: inline-block; }
 
 .dwn__select {
   width: 100%; }
@@ -316,3 +315,88 @@ body {
     text-align: right;
     font-weight: bold;
     font-size: 1.2rem; }
+
+.rental__extras-itemsContainer, .orderItems-row {
+  width: 100%; }
+  .rental__extras-itemsContainer:after, .orderItems-row:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.orderItems-row {
+  margin-bottom: 0.4rem; }
+
+.extraSmall-container {
+  position: relative;
+  width: 5%;
+  float: left;
+  margin-right: .4rem;
+  background-color: #cecece;
+  height: 4.2rem; }
+  .extraSmall-container .counterContainer {
+    width: 100%;
+    margin: 0 auto; }
+    .extraSmall-container .counterContainer .btnUp {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      padding-top: 2px;
+      color: #4d4d4d;
+      cursor: pointer; }
+    .extraSmall-container .counterContainer .btnDown {
+      display: inline-block;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      padding-bottom: 2px;
+      cursor: pointer;
+      color: #4d4d4d; }
+  .extraSmall-container .checkBoxContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: pointer; }
+
+.extraBig-container {
+  width: calc((95% - .4rem));
+  float: left;
+  background-color: #cecece;
+  height: 4.2rem; }
+  .extraBig-container .orderItemInner {
+    padding: .5rem 1.5rem;
+    text-transform: uppercase;
+    position: relative;
+    height: 100%;
+    color: #4d4d4d;
+    min-height: 3.5rem;
+    font-weight: 700;
+    font-size: 1.8rem; }
+    .extraBig-container .orderItemInner .xtraName {
+      float: left;
+      padding-top: 4px; }
+    .extraBig-container .orderItemInner .xtraShow {
+      float: left;
+      padding-top: 4px;
+      margin: 0 3rem;
+      cursor: pointer;
+      background-color: #4d4d4d;
+      color: #cecece;
+      width: 30px;
+      border-radius: 50px; }
+      .extraBig-container .orderItemInner .xtraShow .symbol {
+        display: block;
+        margin: 0 auto;
+        width: 10px;
+        padding-right: 5px; }
+    .extraBig-container .orderItemInner .xtraPrice {
+      float: right;
+      padding-top: 4px;
+      text-decoration: line-through; }
