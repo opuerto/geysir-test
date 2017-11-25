@@ -10,7 +10,8 @@ const apiInfo = {
 Product.controller('mainCtrl', function($scope, $http,
   $location, slidesSvc,
   getVehicleByIdSvc, getPriceForProduct,
-  getProductLocations, getPriceForLocation
+  getProductLocations, getPriceForLocation,
+  calculateRentalTotal
 ) {
   var now, timeSettings, vehicleData,
     pickUpLocationList, dropOffLocationList,
@@ -53,6 +54,7 @@ Product.controller('mainCtrl', function($scope, $http,
   $scope.rentalPrice = 0;
   $scope.locationPrice = 0;
   $scope.extrasPrice = 0;
+  $scope.rentalTotal = 0;
 
 
   getVehicleByIdSvc.fetchData().then(function(response) {
@@ -101,10 +103,16 @@ Product.controller('mainCtrl', function($scope, $http,
     //This section call the service to fetch the price for each product
     getPriceForProduct.fetchData(startDate, endDate).then(function(response) {
       $scope.rentalPrice = response.data.result;
+      //calculate rental total
+      $scope.rentalTotal = calculateRentalTotal.
+      calculeTotal($scope.rentalPrice,$scope.locationPrice,$scope.extrasPrice);
       });
       //we need to keep track of the total of the extras if the user
       //chanche the dates
       recalculateTotalExtras();
+
+
+
   });
   $('#timepicker1').timepicker({
     showMeridian: false,
@@ -137,9 +145,9 @@ Product.controller('mainCtrl', function($scope, $http,
       // update the price of the locations
       updateLocationPrice(pickUpLocationList, timeSettings.startTime);
       updateLocationPrice(dropOffLocationList, timeSettings.endTime);
-      //we need to keep track of the total of the extras if the user
-      //chanche the dates
-
+      //calculate rental total
+      $scope.rentalTotal = calculateRentalTotal.
+      calculeTotal($scope.rentalPrice,$scope.locationPrice,$scope.extrasPrice);
     });
 
   });
@@ -159,6 +167,9 @@ Product.controller('mainCtrl', function($scope, $http,
       updateLocationPrice(pickUpLocationList, timeSettings.startTime);
       updateLocationPrice(dropOffLocationList, timeSettings.endTime);
       recalculateTotalExtras();
+      //calculate rental total
+      $scope.rentalTotal = calculateRentalTotal.
+      calculeTotal($scope.rentalPrice,$scope.locationPrice,$scope.extrasPrice);
     });
 
   });
@@ -296,6 +307,9 @@ Product.controller('mainCtrl', function($scope, $http,
 
     //recalculate the price of the location
     calculateLocationPrice();
+    //calculate rental total
+    $scope.rentalTotal = calculateRentalTotal.
+    calculeTotal($scope.rentalPrice,$scope.locationPrice,$scope.extrasPrice);
   }
   //add one to the item
   $scope.addToMultipleExtra = function (id) {
@@ -337,6 +351,9 @@ Product.controller('mainCtrl', function($scope, $http,
             total = total + extras[i].totalPrice;
         }
         $scope.extrasPrice = total;
+        //calculate rental total
+        $scope.rentalTotal = calculateRentalTotal.
+        calculeTotal($scope.rentalPrice,$scope.locationPrice,$scope.extrasPrice);
 
 
   }
@@ -382,6 +399,9 @@ Product.controller('mainCtrl', function($scope, $http,
         total = total + extras[i].totalPrice;
     }
     $scope.extrasPrice = total;
+    //calculate rental total
+    $scope.rentalTotal = calculateRentalTotal.
+    calculeTotal($scope.rentalPrice,$scope.locationPrice,$scope.extrasPrice);
 
   }
 
@@ -419,6 +439,9 @@ $scope.checkBoxExtra = function(id) {
       total = total + extras[i].totalPrice;
   }
   $scope.extrasPrice = total;
+  //calculate rental total
+  $scope.rentalTotal = calculateRentalTotal.
+  calculeTotal($scope.rentalPrice,$scope.locationPrice,$scope.extrasPrice);
 }
 
 //we need this function to calculate everytime a date or a time change
@@ -603,6 +626,16 @@ Product.service('getPriceForLocation', function($http) {
   }
 })
 
+//Service calculate the grand total
+Product.service('calculateRentalTotal', function($http){
+  var total;
+  this.calculeTotal = function (rentalPrice,locationPrice, extrasPrice)
+  {
+    total = rentalPrice + locationPrice + extrasPrice;
+    console.log(total);
+    return total;
+  }
+});
 //Service GetPriceLocation
 Product.service('getPriceForProduct', function($http) {
   //product id variable

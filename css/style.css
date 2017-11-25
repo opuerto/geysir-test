@@ -316,6 +316,9 @@ body {
     font-weight: bold;
     font-size: 1.2rem; }
 
+.rental__extras {
+  margin-bottom: .6rem; }
+
 .rental__extras-itemsContainer, .orderItems-row {
   width: 100%; }
   .rental__extras-itemsContainer:after, .orderItems-row:after {

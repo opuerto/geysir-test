@@ -132,6 +132,9 @@
 }
 
 // Section for the Extras
+.rental__extras{
+  margin-bottom: .6rem;
+}
 .rental__extras-itemsContainer, .orderItems-row {
   width: 100%;
   @include clearfix;
