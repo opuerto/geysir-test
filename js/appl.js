@@ -61,7 +61,9 @@ Product.controller('mainCtrl', function($scope, $http,
         vehicleData.extras[i].showPrice = vehicleData.extras[i].price;
         vehicleData.extras[i].totalPrice = 0;
         if(vehicleData.extras[i].isMultiple) {
-            vehicleData.extras[i].extrasStates = {initialState:true,addOneState:false,removeOneState:false};
+            vehicleData.extras[i].extrasStates = {initialState:true,calculateState:false};
+        }else {
+          vehicleData.extras[i].checked = false;
         }
           extras.push(vehicleData.extras[i]);
     }
@@ -99,8 +101,10 @@ Product.controller('mainCtrl', function($scope, $http,
     //This section call the service to fetch the price for each product
     getPriceForProduct.fetchData(startDate, endDate).then(function(response) {
       $scope.rentalPrice = response.data.result;
-
-    });
+      });
+      //we need to keep track of the total of the extras if the user
+      //chanche the dates
+      recalculateTotalExtras();
   });
   $('#timepicker1').timepicker({
     showMeridian: false,
@@ -133,9 +137,11 @@ Product.controller('mainCtrl', function($scope, $http,
       // update the price of the locations
       updateLocationPrice(pickUpLocationList, timeSettings.startTime);
       updateLocationPrice(dropOffLocationList, timeSettings.endTime);
-
+      //we need to keep track of the total of the extras if the user
+      //chanche the dates
 
     });
+
   });
 
   $('#timepicker2').timepicker().on('hide.timepicker', function(e) {
@@ -152,9 +158,9 @@ Product.controller('mainCtrl', function($scope, $http,
       // update the price of the locations
       updateLocationPrice(pickUpLocationList, timeSettings.startTime);
       updateLocationPrice(dropOffLocationList, timeSettings.endTime);
-
-
+      recalculateTotalExtras();
     });
+
   });
 
 
@@ -294,7 +300,7 @@ Product.controller('mainCtrl', function($scope, $http,
   //add one to the item
   $scope.addToMultipleExtra = function (id) {
       var extra,getTotalDay,TotalDays,state;
-      //let {extraId,initialState,addOneState,removeOneState} = state;
+
       getTotalDay = calculateTotalDays();
       totalDays = (getTotalDay < 1) ? 1 : getTotalDay;
       for (var i = 0; i < extras.length; i++) {
@@ -304,28 +310,140 @@ Product.controller('mainCtrl', function($scope, $http,
       }
       if (extra.extrasStates.initialState) {
           extra.amount++;
-          extra.selected = true;
+          //extra.selected = true;
           extra.showPrice = extra.amount * extra.price;
+          extra.totalPrice = extra.showPrice;
           document.getElementById("price-"+id)
           .classList.add("removeLine");
           if (extra.type === "PerDay") {
             extra.totalPrice = (extra.showPrice * totalDays);
           }
           extra.extrasStates.initialState = false;
-          extra.extrasStates.addOneState = true;
+          extra.extrasStates.calculateState = true;
           //Todo: calculate the total price
-      } else if (extra.extrasStates.addOneState) {
+      } else if (extra.extrasStates.calculateState) {
           extra.amount++;
           extra.showPrice = extra.amount * extra.price;
+          extra.totalPrice = extra.showPrice;
           if (extra.type === "PerDay") {
             extra.totalPrice = (extra.showPrice * totalDays);
           }
         }
+
+        //Calculate the total price for the extras
+        var total = 0;
+        for (var i = 0; i < extras.length; i++) {
+            //the sum of all the totals of the extras
+            total = total + extras[i].totalPrice;
+        }
+        $scope.extrasPrice = total;
+
+
   }
+
+
 
   $scope.removeToMultipleExtras = function (id) {
+    var extra,getTotalDay,TotalDays,state;
+    //let {extraId,initialState,addOneState,removeOneState} = state;
+    getTotalDay = calculateTotalDays();
+    totalDays = (getTotalDay < 1) ? 1 : getTotalDay;
+    for (var i = 0; i < extras.length; i++) {
+      if(extras[i].id === id) {
+        extra = extras[i];
+      }
+    }
+    if (extra.extrasStates.calculateState) {
+        if (extra.amount > 0) {
+            extra.amount--
+            extra.showPrice = extra.amount * extra.price;
+            extra.totalPrice = extra.showPrice;
+            if (extra.type === "PerDay") {
+              if(extra.amount > 0){
+                  extra.totalPrice = (extra.showPrice * totalDays);
+              }
+            }
+
+            if(extra.amount < 1) {
+              document.getElementById("price-"+id)
+              .classList.remove("removeLine");
+              extra.showPrice = extra.price;
+              extra.totalPrice = 0;
+              extra.extrasStates.initialState = true;
+              extra.extrasStates.calculateState = false;
+
+            }
+        }
+    }
+    //Calculate the total price for the extras
+    var total = 0;
+    for (var i = 0; i < extras.length; i++) {
+        //the sum of all the totals of the extras
+        total = total + extras[i].totalPrice;
+    }
+    $scope.extrasPrice = total;
 
   }
+
+  //Checkbox Selection in extras
+$scope.checkBoxExtra = function(id) {
+  var extra,getTotalDay,TotalDays;
+  getTotalDay = calculateTotalDays();
+  totalDays = (getTotalDay < 1) ? 1 : getTotalDay;
+  for (var i = 0; i < extras.length; i++) {
+    if(extras[i].id === id) {
+      extra = extras[i];
+    }
+  }
+
+  if (!extra.checked) {
+    extra.checked = true;
+    document.getElementById("price-"+id).classList.add("removeLine");
+    extra.totalPrie = extra.showPrice;
+    if (extra.type === "PerDay") {
+        extra.totalPrice = (extra.showPrice * totalDays);
+    }
+    console.log(extra.totalPrice);
+
+  } else {
+     // the checkbox is currently checked and is being uncheck
+     document.getElementById("price-"+id).classList.remove("removeLine");
+     extra.totalPrice = 0;
+     extra.checked = false;
+     console.log("extra price "+extra.totalPrice);
+  }
+  //Calculate the total price for the extras
+  var total = 0;
+  for (var i = 0; i < extras.length; i++) {
+      //the sum of all the totals of the extras
+      total = total + extras[i].totalPrice;
+  }
+  $scope.extrasPrice = total;
+}
+
+//we need this function to calculate everytime a date or a time change
+recalculateTotalExtras = function()
+{
+  var getTotalDay,TotalDays,total;
+  total = 0;
+  getTotalDay = calculateTotalDays();
+  totalDays = (getTotalDay < 1) ? 1 : getTotalDay;
+  for (var i = 0; i < extras.length; i++) {
+      //We need to check only those extras selected by the user
+      if (extras[i].totalPrice > 0) {
+        //we update the prices
+        if (extras[i].type === "PerDay") {
+            extras[i].totalPrice = (extras[i].showPrice * totalDays);
+        } else {
+          extras[i].totalPrice = extras[i].showPrice;
+        }
+      }
+      //We recalculate the total
+      total = total + extras[i].totalPrice;
+  }
+  $scope.extrasPrice = total;
+
+}
 
   //Calculate the total days of the rental
   calculateTotalDays = function (){
@@ -337,14 +455,25 @@ Product.controller('mainCtrl', function($scope, $http,
        totalDays
      } = timeSettings;
     var pickUpDay, dropOffDay,pickUpDayFormatted,dropOffDayFormatted,duration;
-    pickUpDay = startDate+" "+startTime;
-    dropOffDay = endDate+" "+endTime;
-    pickUpDayFormatted = moment(pickUpDay, 'DD/MM/YYYY HH:mm:ss');
-    dropOffDayFormatted = moment(dropOffDay, 'DD/MM/YYYY HH:mm:ss');
+    //pickUpDay = startDate+" "+startTime;
+    //dropOffDay = endDate+" "+endTime;
+    pickUpDay = startDate;
+    dropOffDay = endDate;
+    //pickUpDayFormatted = moment(pickUpDay, 'DD/MM/YYYY HH:mm:ss');
+    //dropOffDayFormatted = moment(dropOffDay, 'DD/MM/YYYY HH:mm:ss');
+    pickUpDayFormatted = moment(pickUpDay, 'DD/MM/YYYY');
+    dropOffDayFormatted = moment(dropOffDay, 'DD/MM/YYYY');
     duration = moment.duration(dropOffDayFormatted.diff(pickUpDayFormatted));
     var diffDays = duration.asDays();
     totalDays = diffDays;
-    return diffDays;
+    var same = moment(pickUpDayFormatted, 'DD/MM/YYYY').isSame(moment(dropOffDayFormatted, 'DD/MM/YYYY'));
+    if (!same) {
+      var extraday = moment(startTime, "HH:mm:ss").isBefore(moment(endTime, "HH:mm:ss"));
+      if (extraday) {
+        totalDays = totalDays+1;
+      }
+    }
+    return totalDays;
   }
 
 
