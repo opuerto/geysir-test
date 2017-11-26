@@ -170,6 +170,67 @@ body {
   .dwn__select .show {
     display: block; }
 
+.driverDetails {
+  margin-bottom: 1.5rem; }
+
+.innerDriverContainer {
+  position: relative; }
+  .innerDriverContainer .btnRemoveDriver {
+    position: absolute;
+    top: 0;
+    right: -3rem;
+    height: 100%;
+    min-height: 3rem;
+    font-size: 2.7rem;
+    color: #b83400;
+    cursor: pointer; }
+
+.driverToggle {
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #4d4d4d;
+  background-color: #cecece;
+  height: 3rem;
+  cursor: pointer;
+  margin-bottom: 0.2rem; }
+  .driverToggle:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .driverToggle:hover {
+    background-color: #4d4d4d;
+    color: #cecece; }
+  .driverToggle .driverToggle-title {
+    padding: 0.5rem 1.5rem; }
+    .driverToggle .driverToggle-title .driverNo {
+      float: left; }
+    .driverToggle .driverToggle-title .symbol {
+      float: right; }
+
+.driverDetailsForm {
+  margin-bottom: .5rem; }
+
+.inputContainer {
+  padding: .5rem 1.5rem;
+  text-transform: uppercase;
+  position: relative;
+  min-height: 3.5rem;
+  background: #cecece; }
+  .inputContainer input[type=text], .inputContainer select {
+    width: 100%;
+    border-radius: none;
+    border: none;
+    background-color: #cecece;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: inherit; }
+  .inputContainer input[type=text]:focus, .inputContainer Select:focus {
+    outline: none; }
+  .inputContainer select option {
+    outline: none; }
+
 .u-center-text {
   text-align: center; }
 
@@ -217,6 +278,12 @@ body {
 
 .u-decrease-padding-right-s {
   padding-right: 1rem; }
+
+.u-decrease-padding-left-m {
+  padding-left: .2rem; }
+
+.u-decrease-padding-right-m {
+  padding-right: .2rem; }
 
 .u-smaller-container {
   width: 80%;
@@ -405,3 +472,18 @@ body {
       text-decoration: line-through; }
     .extraBig-container .orderItemInner .removeLine {
       text-decoration: none; }
+
+.my-row {
+  width: 100%; }
+  .my-row:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .my-row:not(:last-child) {
+    margin-bottom: 0.2rem; }
+  .my-row [class^="mygrid-col"] {
+    float: left; }
+    .my-row [class^="mygrid-col"]:not(:last-child) {
+      margin-right: 0.2rem; }
+  .my-row .mygrid-col-1-of-2 {
+    width: calc((100% - 0.2rem)/2); }

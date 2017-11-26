@@ -1,0 +1,51 @@
+.driverDetails{
+  margin-bottom: 1.5rem;
+}
+.innerDriverContainer {
+  position: relative;
+  .btnRemoveDriver {
+    position: absolute;
+    top:0;
+    right: -3rem;
+    height: 100%;
+    min-height: 3rem;
+    font-size: 2.7rem;
+    color: $color-primary;
+    cursor: pointer;
+
+  }
+}
+.driverToggle {
+  @include clearfix;
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $color-dark-gray;
+  background-color: $color-primary-input;
+  height: 3rem;
+  cursor: pointer;
+  margin-bottom: 0.2rem;
+
+  &:hover {
+    background-color: $color-dark-gray;
+    color: $color-primary-input;
+  }
+
+  .driverToggle-title {
+    padding: 0.5rem 1.5rem;
+
+    .driverNo {
+      float: left;
+    }
+
+    .symbol {
+      float: right;
+    }
+  }
+
+}
+
+.driverDetailsForm {
+  margin-bottom: .5rem;
+}

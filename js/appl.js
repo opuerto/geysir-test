@@ -15,8 +15,9 @@ Product.controller('mainCtrl', function($scope, $http,
 ) {
   var now, timeSettings, vehicleData,
     pickUpLocationList, dropOffLocationList,
-    DropDownSelected, extras, totalDays;
+    DropDownSelected, extras, totalDays, driverInfo;
   now = moment()
+  var counter = 0;
   timeSettings = {
     startDate: now.format('DD/MM/YYYY'),
     endDate: now.format('DD/MM/YYYY'),
@@ -49,12 +50,25 @@ Product.controller('mainCtrl', function($scope, $http,
   pickUpLocationList = [];
   dropOffLocationList = [];
   extras = [];
+  //store information about the drivers
+  driverInfo = [
+    {
+      id:"default",
+      firstName:"",
+      lastName:"",
+      license:"",
+      country:"",
+      isShowing:false,
+      eraseButton:false
+    }
+  ]
   $scope.pickUpL = pickUpLocationList;
   $scope.dropOff = dropOffLocationList;
   $scope.rentalPrice = 0;
   $scope.locationPrice = 0;
   $scope.extrasPrice = 0;
   $scope.rentalTotal = 0;
+  $scope.driverInfo = driverInfo;
 
 
   getVehicleByIdSvc.fetchData().then(function(response) {
@@ -70,7 +84,7 @@ Product.controller('mainCtrl', function($scope, $http,
           extras.push(vehicleData.extras[i]);
     }
     $scope.extras = extras;
-      console.log(extras);
+
   });
 
   //This section call the service to fetch the list of product locations
@@ -286,6 +300,18 @@ Product.controller('mainCtrl', function($scope, $http,
 
   }
 
+  $scope.showDriverDetailsForm = function (driverId) {
+    var driver;
+    for (var i = 0; i < driverInfo.length; i++) {
+      if(driverInfo[i].id === driverId) {
+        driver = driverInfo[i];
+        break;
+      }
+    }
+    driver.isShowing = (driver.isShowing)?false:true;
+
+  }
+
   //after click event in the dropDown call this function
   $scope.selectLocation = function(id, price, code, type) {
     if (type === 0) {
@@ -334,13 +360,37 @@ Product.controller('mainCtrl', function($scope, $http,
           }
           extra.extrasStates.initialState = false;
           extra.extrasStates.calculateState = true;
-          //Todo: calculate the total price
+          //Check if is extra driver and add an object to the array
+          if (extra.isExtraDriver) {
+              driverInfo.push({
+                id:"driver-"+Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+                firstName:"",
+                lastName:"",
+                license:"",
+                country:"",
+                isShowing:false,
+                eraseButton:true,
+                extrasId:extra.id
+              })
+          }
       } else if (extra.extrasStates.calculateState) {
           extra.amount++;
           extra.showPrice = extra.amount * extra.price;
           extra.totalPrice = extra.showPrice;
           if (extra.type === "PerDay") {
             extra.totalPrice = (extra.showPrice * totalDays);
+          }
+          if (extra.isExtraDriver) {
+              driverInfo.push({
+                id:"driver-"+Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+                firstName:"",
+                lastName:"",
+                license:"",
+                country:"",
+                isShowing:false,
+                eraseButton:true,
+                extrasId:extra.id
+              })
           }
         }
 
@@ -362,7 +412,7 @@ Product.controller('mainCtrl', function($scope, $http,
 
   $scope.removeToMultipleExtras = function (id) {
     var extra,getTotalDay,TotalDays,state;
-    //let {extraId,initialState,addOneState,removeOneState} = state;
+
     getTotalDay = calculateTotalDays();
     totalDays = (getTotalDay < 1) ? 1 : getTotalDay;
     for (var i = 0; i < extras.length; i++) {
@@ -380,6 +430,11 @@ Product.controller('mainCtrl', function($scope, $http,
                   extra.totalPrice = (extra.showPrice * totalDays);
               }
             }
+            if (extra.isExtraDriver) {
+                if (driverInfo.length > 1) {
+                    driverInfo.pop();
+                  }
+                }
 
             if(extra.amount < 1) {
               document.getElementById("price-"+id)
@@ -405,6 +460,61 @@ Product.controller('mainCtrl', function($scope, $http,
 
   }
 
+  $scope.removeExtraDriver = function(driverId) {
+      var extrasId,extra,getTotalDay,TotalDays,state;
+      for (var i = 0; i < driverInfo.length; i++) {
+        if (driverInfo[i].id === driverId) {
+            extrasId = driverInfo[i].extrasId;
+            driverInfo.splice(i, 1);
+            break;
+        }
+      }
+      /*I will refactor the whole thing Im repiting myself all over the place
+        Here down is just a copy paste from the function removeToMultipleExtras
+        And what it does is to substract the amount of the extra and recalculate the prices
+      */
+      getTotalDay = calculateTotalDays();
+      totalDays = (getTotalDay < 1) ? 1 : getTotalDay;
+      for (var i = 0; i < extras.length; i++) {
+        if(extras[i].id === extrasId) {
+          extra = extras[i];
+        }
+      }
+      if (extra.extrasStates.calculateState) {
+          if (extra.amount > 0) {
+              extra.amount--
+              extra.showPrice = extra.amount * extra.price;
+              extra.totalPrice = extra.showPrice;
+              if (extra.type === "PerDay") {
+                if(extra.amount > 0){
+                    extra.totalPrice = (extra.showPrice * totalDays);
+                }
+              }
+              if(extra.amount < 1) {
+                document.getElementById("price-"+extrasId)
+                .classList.remove("removeLine");
+                extra.showPrice = extra.price;
+                extra.totalPrice = 0;
+                extra.extrasStates.initialState = true;
+                extra.extrasStates.calculateState = false;
+
+              }
+          }
+      }
+      //Calculate the total price for the extras
+      var total = 0;
+      for (var i = 0; i < extras.length; i++) {
+          //the sum of all the totals of the extras
+          total = total + extras[i].totalPrice;
+      }
+      $scope.extrasPrice = total;
+      //calculate rental total
+      $scope.rentalTotal = calculateRentalTotal.
+      calculeTotal($scope.rentalPrice,$scope.locationPrice,$scope.extrasPrice);
+
+
+  }
+
   //Checkbox Selection in extras
 $scope.checkBoxExtra = function(id) {
   var extra,getTotalDay,TotalDays;
@@ -423,14 +533,14 @@ $scope.checkBoxExtra = function(id) {
     if (extra.type === "PerDay") {
         extra.totalPrice = (extra.showPrice * totalDays);
     }
-    console.log(extra.totalPrice);
+
 
   } else {
      // the checkbox is currently checked and is being uncheck
      document.getElementById("price-"+id).classList.remove("removeLine");
      extra.totalPrice = 0;
      extra.checked = false;
-     console.log("extra price "+extra.totalPrice);
+
   }
   //Calculate the total price for the extras
   var total = 0;
@@ -444,6 +554,10 @@ $scope.checkBoxExtra = function(id) {
   calculeTotal($scope.rentalPrice,$scope.locationPrice,$scope.extrasPrice);
 }
 
+//function helper that identify if we remove a driver from the extras form of from the driver details form
+helpingRemoveExtrasAndExtraDriver = function(extra,type){
+
+}
 //we need this function to calculate everytime a date or a time change
 recalculateTotalExtras = function()
 {
@@ -632,7 +746,7 @@ Product.service('calculateRentalTotal', function($http){
   this.calculeTotal = function (rentalPrice,locationPrice, extrasPrice)
   {
     total = rentalPrice + locationPrice + extrasPrice;
-    console.log(total);
+
     return total;
   }
 });

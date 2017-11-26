@@ -313,6 +313,74 @@
       </div>
     </div>
   </section>
+  <section class="product__header">
+    <div class="container">
+      <div class="row">
+        <div class="product__header-container">
+          <div class="col-md-5 u-clear-padding-left">
+            <h1 class="product-heading">
+                Driver Details
+              </h1>
+          </div>
+          <div class="col-md-7 u-clear-padding-right">
+            <p class="product-heading-legent">
+              <span class="u-span-block">Only registered drivers are insured to drive the rented vehicle</span>
+              <span class="u-span-block">You can add or delete more drivers in the extras column on the left</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="driverDetails" ng-repeat="driver in driverInfo">
+    <div class="container">
+      <div class="row">
+        <div class="u-smaller-container">
+          <div class="innerDriverContainer">
+            <div class="driverToggle" ng-click="showDriverDetailsForm(driver.id)">
+                <div class="driverToggle-title">
+                  <span class="driverNo">Driver #<span ng-bind="$index+1"></span></span><span class="symbol"><i class="glyphicon glyphicon-chevron-down icon"></i></span>
+                </div>
+            </div>
+            <div class="btnRemoveDriver" ng-if="driver.eraseButton">
+              <i class="glyphicon glyphicon-remove-sign" ng-click="removeExtraDriver(driver.id)"></i>
+            </div>
+          </div>
+          <div class="driverDetailsForm" id="driverForm-default" ng-if="driver.isShowing">
+            <div class="my-row">
+              <div class="mygrid-col-1-of-2" >
+                <div class="inputContainer">
+                  <input type="text" placeholder="FIRST NAME" ng-model="driver.firstName"/>
+                </div>
+              </div>
+              <div class="mygrid-col-1-of-2" >
+                <div class="inputContainer">
+                  <input type="text" placeholder="LAST NAME" ng-model="driver.lastName"/>
+                </div>
+              </div>
+            </div>
+            <div class="my-row">
+              <div class="mygrid-col-1-of-2" >
+                <div class="inputContainer">
+                  <select id="country" name="country">
+                    <option value="default">COUNTRY OF ISSUE</option>
+                    <option value="au">Australia</option>
+                    <option value="ca">Canada</option>
+                    <option value="usa">USA</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mygrid-col-1-of-2" >
+                <div class="inputContainer">
+                  <input type="text" placeholder="LICENCE NUMBER" ng-model="driver.license"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/js/geysir.js" type="text/javascript"></script>
   <!-- Latest compiled and minified JavaScript -->

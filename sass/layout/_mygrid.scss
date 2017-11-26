@@ -1,0 +1,21 @@
+//row
+.my-row {
+  width: 100%;
+  @include clearfix;
+
+  &:not(:last-child) {
+    margin-bottom: $mygrid-gutter-vertical;
+  }
+
+  [class^="mygrid-col"] {
+    float: left;
+
+    &:not(:last-child) {
+      margin-right: $mygrid-gutter-horizontal;
+    }
+  }
+  .mygrid-col-1-of-2 {
+    width: calc((100% - #{$mygrid-gutter-horizontal})/2);
+  }
+
+}

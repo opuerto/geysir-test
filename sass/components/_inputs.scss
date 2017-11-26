@@ -1,0 +1,24 @@
+.inputContainer {
+  padding: .5rem 1.5rem;
+  text-transform: uppercase;
+  position: relative;
+  min-height: 3.5rem;
+  background: $color-primary-input;
+  input[type=text], select {
+    width: 100%;
+    border-radius: none;
+    border: none;
+    background-color:$color-primary-input;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: inherit;
+  }
+  input[type=text]:focus, Select:focus {
+    outline: none;
+
+  }
+  select option {
+    outline: none;
+  }
+
+}
