@@ -218,7 +218,7 @@ body {
   position: relative;
   min-height: 3.5rem;
   background: #cecece; }
-  .inputContainer input[type=text], .inputContainer select {
+  .inputContainer input[type=text], .inputContainer select, .inputContainer textarea {
     width: 100%;
     border-radius: none;
     border: none;
@@ -226,10 +226,22 @@ body {
     font-size: 1.8rem;
     font-weight: 700;
     color: inherit; }
-  .inputContainer input[type=text]:focus, .inputContainer Select:focus {
+  .inputContainer textarea {
+    resize: none; }
+  .inputContainer input[type=text]:focus, .inputContainer Select:focus, .inputContainer textarea:focus {
     outline: none; }
   .inputContainer select option {
     outline: none; }
+
+.CostumerDetails {
+  margin-top: 1rem; }
+  .CostumerDetails:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.commentRight {
+  max-height: 18.1rem; }
 
 .u-center-text {
   text-align: center; }
@@ -485,5 +497,7 @@ body {
     float: left; }
     .my-row [class^="mygrid-col"]:not(:last-child) {
       margin-right: 0.2rem; }
+  .my-row .mygrid-col-1-of-1 {
+    width: 100%; }
   .my-row .mygrid-col-1-of-2 {
     width: calc((100% - 0.2rem)/2); }

@@ -14,6 +14,9 @@
       margin-right: $mygrid-gutter-horizontal;
     }
   }
+  .mygrid-col-1-of-1 {
+    width: 100%;
+  }
   .mygrid-col-1-of-2 {
     width: calc((100% - #{$mygrid-gutter-horizontal})/2);
   }

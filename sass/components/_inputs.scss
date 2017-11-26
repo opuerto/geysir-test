@@ -4,7 +4,7 @@
   position: relative;
   min-height: 3.5rem;
   background: $color-primary-input;
-  input[type=text], select {
+  input[type=text], select,textarea {
     width: 100%;
     border-radius: none;
     border: none;
@@ -13,7 +13,10 @@
     font-weight: 700;
     color: inherit;
   }
-  input[type=text]:focus, Select:focus {
+  textarea {
+    resize: none;
+}
+  input[type=text]:focus, Select:focus, textarea:focus {
     outline: none;
 
   }

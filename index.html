@@ -284,7 +284,7 @@
                 <div class="checkBoxContainer" ng-if="!extra.isMultiple">
                   <div class="input-group">
                     <input type="checkbox" ng-click="checkBoxExtra(extra.id)">
-                 </div>
+                  </div>
                 </div>
               </div>
               <div class="extraBig-container">
@@ -317,6 +317,93 @@
     <div class="container">
       <div class="row">
         <div class="product__header-container">
+          <div class="col-md-12 u-clear-padding-left">
+            <h1 class="product-heading">
+                Costumer Details
+              </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="CostumerDetails">
+    <div class="container">
+      <div class="row">
+        <div class="u-smaller-container">
+          <div class="my-row">
+            <div class="customerDetailsinner">
+              <div class="my-row">
+                <div class="mygrid-col-1-of-2">
+                  <div class="my-row">
+                    <div class="mygrid-col-1-of-2">
+                      <div class="inputContainer">
+                        <input type="text" placeholder="First name" ng-model="driver.firstName" />
+                      </div>
+                    </div>
+                    <div class="mygrid-col-1-of-2">
+                      <div class="inputContainer">
+                        <input type="text" placeholder="Last name" ng-model="driver.firstName" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="my-row">
+                    <div class="mygrid-col-1-of-1">
+                      <div class="inputContainer">
+                        <input type="text" placeholder="Address" ng-model="driver.firstName" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="my-row">
+                    <div class="mygrid-col-1-of-1">
+                      <div class="inputContainer">
+                        <input type="text" placeholder="Post Code & city" ng-model="driver.firstName" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="my-row">
+                    <div class="mygrid-col-1-of-1">
+                      <div class="inputContainer">
+                        <select id="country" name="country">
+                          <option value="default">COUNTRY OF ISSUE</option>
+                          <option value="au">Australia</option>
+                          <option value="ca">Canada</option>
+                          <option value="usa">USA</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="my-row">
+                    <div class="mygrid-col-1-of-2">
+                      <div class="inputContainer">
+                        <input type="text" placeholder="Mobile Phone" ng-model="driver.firstName" />
+                      </div>
+                    </div>
+                    <div class="mygrid-col-1-of-2">
+                      <div class="inputContainer">
+                        <input type="text" placeholder="E-mail" ng-model="driver.firstName" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mygrid-col-1-of-2">
+                  <div class="inputContainer">
+                     <div class="commentRight">
+                       <textarea placeholder="Customer comments/request" cols="30" rows="7"></textarea>
+                     </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="product__header">
+    <div class="container">
+      <div class="row">
+        <div class="product__header-container">
           <div class="col-md-5 u-clear-padding-left">
             <h1 class="product-heading">
                 Driver Details
@@ -338,9 +425,9 @@
         <div class="u-smaller-container">
           <div class="innerDriverContainer">
             <div class="driverToggle" ng-click="showDriverDetailsForm(driver.id)">
-                <div class="driverToggle-title">
-                  <span class="driverNo">Driver #<span ng-bind="$index+1"></span></span><span class="symbol"><i class="glyphicon glyphicon-chevron-down icon"></i></span>
-                </div>
+              <div class="driverToggle-title">
+                <span class="driverNo">Driver #<span ng-bind="$index+1"></span></span><span class="symbol"><i class="glyphicon glyphicon-chevron-down icon"></i></span>
+              </div>
             </div>
             <div class="btnRemoveDriver" ng-if="driver.eraseButton">
               <i class="glyphicon glyphicon-remove-sign" ng-click="removeExtraDriver(driver.id)"></i>
@@ -348,19 +435,19 @@
           </div>
           <div class="driverDetailsForm" id="driverForm-default" ng-if="driver.isShowing">
             <div class="my-row">
-              <div class="mygrid-col-1-of-2" >
+              <div class="mygrid-col-1-of-2">
                 <div class="inputContainer">
-                  <input type="text" placeholder="FIRST NAME" ng-model="driver.firstName"/>
+                  <input type="text" placeholder="FIRST NAME" ng-model="driver.firstName" />
                 </div>
               </div>
-              <div class="mygrid-col-1-of-2" >
+              <div class="mygrid-col-1-of-2">
                 <div class="inputContainer">
-                  <input type="text" placeholder="LAST NAME" ng-model="driver.lastName"/>
+                  <input type="text" placeholder="LAST NAME" ng-model="driver.lastName" />
                 </div>
               </div>
             </div>
             <div class="my-row">
-              <div class="mygrid-col-1-of-2" >
+              <div class="mygrid-col-1-of-2">
                 <div class="inputContainer">
                   <select id="country" name="country">
                     <option value="default">COUNTRY OF ISSUE</option>
@@ -370,9 +457,9 @@
                   </select>
                 </div>
               </div>
-              <div class="mygrid-col-1-of-2" >
+              <div class="mygrid-col-1-of-2">
                 <div class="inputContainer">
-                  <input type="text" placeholder="LICENCE NUMBER" ng-model="driver.license"/>
+                  <input type="text" placeholder="LICENCE NUMBER" ng-model="driver.license" />
                 </div>
               </div>
             </div>
@@ -380,7 +467,7 @@
         </div>
       </div>
     </div>
-    </section>
+  </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="/js/geysir.js" type="text/javascript"></script>
   <!-- Latest compiled and minified JavaScript -->
