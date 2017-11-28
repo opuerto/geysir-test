@@ -301,6 +301,12 @@ body {
   width: 80%;
   margin: 0 auto; }
 
+.u-float-left {
+  float: left; }
+
+.u-float-right {
+  float: right; }
+
 .car__info-container {
   width: 80%;
   margin: 0 auto; }
