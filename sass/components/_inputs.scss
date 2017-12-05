@@ -24,4 +24,28 @@
     outline: none;
   }
 
+  .my-ui-select {
+    .btn-default {
+      color: inherit;
+      background-color: $color-primary-input;
+      border-color: none;
+      border-radius: none;
+      border: none;
+    }
+    .btn {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: inherit;
+      border-radius: 0;
+    }
+    .ui-select-bootstrap .ui-select-choices-row>span {
+      font-weight: 700;
+      color: inherit;
+      background-color: $color-primary-input;
+      border-bottom: 2px solid $color-dark-gray;
+    }
+    .ui-select-bootstrap .ui-select-choices-row.active>span {
+      background-color: $color-primary-input !important;
+    }
+  }
 }

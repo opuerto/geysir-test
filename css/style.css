@@ -232,6 +232,24 @@ body {
     outline: none; }
   .inputContainer select option {
     outline: none; }
+  .inputContainer .my-ui-select .btn-default {
+    color: inherit;
+    background-color: #cecece;
+    border-color: none;
+    border-radius: none;
+    border: none; }
+  .inputContainer .my-ui-select .btn {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: inherit;
+    border-radius: 0; }
+  .inputContainer .my-ui-select .ui-select-bootstrap .ui-select-choices-row > span {
+    font-weight: 700;
+    color: inherit;
+    background-color: #cecece;
+    border-bottom: 2px solid #4d4d4d; }
+  .inputContainer .my-ui-select .ui-select-bootstrap .ui-select-choices-row.active > span {
+    background-color: #cecece !important; }
 
 .CostumerDetails {
   margin-top: 1rem; }
@@ -241,7 +259,7 @@ body {
     clear: both; }
 
 .commentRight {
-  max-height: 18.1rem; }
+  height: 189px; }
 
 .u-center-text {
   text-align: center; }

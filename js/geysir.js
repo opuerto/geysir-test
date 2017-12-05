@@ -26,6 +26,12 @@ window.onclick = function(event) {
   }
 }
 
+$('.selectpicker').selectpicker({
+  style: 'btn-info',
+  size: 4
+});
+
+
 /*window.onclick = function(event) {
   console.log(event.target)
   if (event.target.matches('.dropActive')) {

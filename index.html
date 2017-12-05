@@ -7,8 +7,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/vendor/daterangepicker.css">
   <link rel="stylesheet" href="/css/vendor/bootstrap-timepicker.min.css">
+  <!--bootstrap select search -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="node_modules/ui-select/dist/select.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <script src="/js/vendor/angular.min.js"></script>
+  <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
   <script src="/js/vendor/ui-bootstrap-tpls-2.5.0.min.js"></script>
   <script src="/js/vendor/angurlar-resource.js"></script>
   <script src="/js/app/pages/products/productPage.js"></script>
@@ -363,13 +367,16 @@
                   <div class="my-row">
                     <div class="mygrid-col-1-of-1">
                       <div class="inputContainer">
-                        <select id="country" name="country">
-                          <option value="default">COUNTRY OF ISSUE</option>
-                          <option value="au">Australia</option>
-                          <option value="ca">Canada</option>
-                          <option value="usa">USA</option>
-                        </select>
+                        <ui-select ng-model="selectedCountry" class="my-ui-select">
+                          <ui-select-match>
+                              <span ng-bind="$select.selected"></span>
+                          </ui-select-match>
+                          <ui-select-choices repeat="item in (countries | filter: $select.search) track by item">
+                              <span ng-bind="item"></span>
+                          </ui-select-choices>
+                        </ui-select>
                       </div>
+
                     </div>
                   </div>
                   <div class="my-row">
@@ -387,9 +394,9 @@
                 </div>
                 <div class="mygrid-col-1-of-2">
                   <div class="inputContainer">
-                     <div class="commentRight">
-                       <textarea placeholder="Customer comments/request" cols="30" rows="7"></textarea>
-                     </div>
+                    <div class="commentRight">
+                      <textarea placeholder="Customer comments/request" cols="32" rows="7"></textarea>
+                    </div>
 
                   </div>
                 </div>
@@ -518,18 +525,17 @@
 
                 </div>
                 <div class="mygrid-col-1-of-2">
-                  !ö
                   <div class="inputContainer">
-                     <div class="crediCardInfo">
-                       <div class="my-row">
-                         <div class="mygrid-col-1-of-1">
-                           <div class="inputContainer">
-                             <span class="u-float-left">Bank Transfer</span><span class="u-float-right"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
-                           </div>
-                         </div>
-                       </div>
+                    <div class="crediCardInfo">
+                      <div class="my-row">
+                        <div class="mygrid-col-1-of-1">
+                          <!--div class="inputContainer">
+                            <span class="u-float-left">Bank Transfer</span><span class="u-float-right"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
+                          </div-->
+                        </div>
+                      </div>
 
-                     </div>
+                    </div>
 
                   </div>
                 </div>
@@ -541,12 +547,15 @@
     </div>
   </section>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   <script src="/js/geysir.js" type="text/javascript"></script>
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="/js/vendor/moment.min.js"></script>
   <script src="/js/vendor/daterangepicker.js"></script>
   <script src="/js/vendor/bootstrap-timepicker.min.js"></script>
+  <script src="node_modules/ui-select/dist/select.min.js"></script>
+
 </body>
 
 </html>
